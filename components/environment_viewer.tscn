@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bba74pl43jewo"]
+
+[ext_resource type="Script" path="res://components/environment_viewer.gd" id="1_npifu"]
+[ext_resource type="PackedScene" uid="uid://dwm31tm37ua5f" path="res://components/movable_camera_3d.tscn" id="1_xgvpr"]
+[ext_resource type="PackedScene" uid="uid://dsytkbd66ktuj" path="res://environments/base_field.tscn" id="2_08vek"]
+[ext_resource type="PackedScene" uid="uid://dwihfhava7efc" path="res://util/seeds_menu.tscn" id="4_67kd0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dfiv2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_xop5o"]
+sky_material = SubResource("ProceduralSkyMaterial_dfiv2")
+
+[sub_resource type="Environment" id="Environment_8hnrr"]
+background_mode = 2
+sky = SubResource("Sky_xop5o")
+tonemap_mode = 2
+
+[node name="EnvironmentViewer" type="Node3D"]
+script = ExtResource("1_npifu")
+environment = ExtResource("2_08vek")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8hnrr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MovableCamera3D" parent="." instance=ExtResource("1_xgvpr")]
+zoom_sens = 50.0
+camrot_h = 45.0
+camrot_v = -30.0
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="UI" type="NinePatchRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacer" type="Control" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="SeedsMenu" parent="UI/HBoxContainer" instance=ExtResource("4_67kd0")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1

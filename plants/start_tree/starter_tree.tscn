@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkq4fquggw733"]
+
+[ext_resource type="Script" path="res://plants/start_tree/starter_tree.gd" id="1_mc0bv"]
+[ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_p3mir"]
+[ext_resource type="PackedScene" uid="uid://dohl45pfcstpi" path="res://plants/start_tree/uploads_files_3120952_Tree.gltf" id="2_vik5u"]
+
+[node name="StarterTree" instance=ExtResource("1_p3mir")]
+script = ExtResource("1_mc0bv")
+
+[node name="uploads_files_3120952_Tree" parent="." index="0" instance=ExtResource("2_vik5u")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
+
+[node name="Tree" parent="uploads_files_3120952_Tree" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.066, 0)
+
+[editable path="uploads_files_3120952_Tree"]

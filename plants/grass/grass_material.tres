@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://55tbinsoenxr"]
+
+[ext_resource type="Texture2D" uid="uid://dxagb753mxdqs" path="res://plants/grass/tall_grass.png" id="1_g7uma"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.795
+alpha_antialiasing_mode = 2
+alpha_antialiasing_edge = 0.3
+cull_mode = 2
+albedo_texture = ExtResource("1_g7uma")

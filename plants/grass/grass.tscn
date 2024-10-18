@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bymddg6g2np50"]
+
+[ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_ftd40"]
+[ext_resource type="Script" path="res://plants/grass/grass.gd" id="2_7je21"]
+[ext_resource type="Material" uid="uid://55tbinsoenxr" path="res://plants/grass/grass_material.tres" id="3_rlsp1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_puspv"]
+material = ExtResource("3_rlsp1")
+center_offset = Vector3(0, 0.5, 0)
+
+[node name="GrassPlant" instance=ExtResource("1_ftd40")]
+script = ExtResource("2_7je21")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("QuadMesh_puspv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("QuadMesh_puspv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_puspv")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
+mesh = SubResource("QuadMesh_puspv")
