@@ -72,6 +72,8 @@ func _ready():
 	if not set_cam_dist:
 		camera_distance = camera_distance
 		set_cam_dist = true
+	cam_h.rotation_degrees.y = camrot_h
+	cam_v.rotation_degrees.x = camrot_v
 
 const SENS_MULT = 5
 func _physics_process(delta):
@@ -93,7 +95,6 @@ func _physics_process(delta):
 			camrot_h += h_sens * SENS_MULT
 	
 	# Camera movement logic
-	camrot_v = clamp(camrot_v, cam_v_min, cam_v_max)
 	if not lock_horiz:
 		cam_h.rotation_degrees.y = lerp(cam_h.rotation_degrees.y, camrot_h, delta * h_accel)
 	cam_v.rotation_degrees.x = lerp(cam_v.rotation_degrees.x, camrot_v, delta * v_accel)
