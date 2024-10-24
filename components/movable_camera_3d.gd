@@ -6,8 +6,9 @@ extends Node3D
 
 const cam_v_max := 75.0 # Max vertical camera angle (lower bound)
 const cam_v_min := -75.0 # Min vertical camera angle (upper bound)
-@onready var h_sens = 0.1 # Horizontal sensitivity
-@onready var v_sens = 0.1 # Vertical sensitivity
+@export var h_sens = 0.1 # Horizontal sensitivity
+@export var v_sens = 0.1 # Vertical sensitivity
+@export var do_interpolate := true # Do we interpolate camera movement?
 var h_accel = 10
 var v_accel = 10
 @onready var cam_h = $Horizontal
@@ -15,13 +16,15 @@ var v_accel = 10
 
 @onready var cam = $Horizontal/Vertical/Camera3D
 
+@export var do_right_click_motion = true
+
 var set_cam_dist := true
-@export_range(45.0, 240.0) var camera_distance: float = 120.0: # Distance of camera from rotation origin
+@export_range(0.0, 240.0) var camera_distance: float = 120.0: # Distance of camera from rotation origin
 	set(value):
 		if value > 240.0:
 			value = 240.0
-		elif value < 45.0:
-			value = 45.0
+		elif value < 0.0:
+			value = 0.0
 		if cam:
 			cam.position.z = value
 		else:
@@ -48,7 +51,8 @@ var cam_rot_updated := true
 		camrot_v = value
 
 var can_input: bool = true # Can the camera be moved?
-var lock_horiz: bool = false # Lock horizontal rotation (vertical only)
+@export var lock_horiz: bool = false # Lock horizontal rotation (vertical only)
+@export var can_zoom: bool = true # Can we zoom?
 
 func toggle_inputs(in_bool = null):
 	if in_bool == null:
@@ -60,7 +64,7 @@ func _input(event):
 	if Engine.is_editor_hint():
 		return # Don't run this in the editor!
 	if can_input and event is InputEventMouseMotion:
-		if Input.is_action_pressed("right_click"):
+		if Input.is_action_pressed("right_click") or not do_right_click_motion:
 			camrot_h -= event.relative.x * h_sens
 			camrot_v -= event.relative.y * v_sens
 
@@ -80,7 +84,7 @@ func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return # Don't run this in the editor!
 	if can_input:
-		if Input.is_action_pressed("right_click"):
+		if Input.is_action_pressed("right_click") and can_zoom:
 			if Input.is_action_just_pressed("zoom_in"):
 				camera_distance = lerp(camera_distance, camera_distance-0.5*zoom_sens, delta*h_accel)
 			elif Input.is_action_just_pressed("zoom_out"):
@@ -95,6 +99,11 @@ func _physics_process(delta):
 			camrot_h += h_sens * SENS_MULT
 	
 	# Camera movement logic
-	if not lock_horiz:
-		cam_h.rotation_degrees.y = lerp(cam_h.rotation_degrees.y, camrot_h, delta * h_accel)
-	cam_v.rotation_degrees.x = lerp(cam_v.rotation_degrees.x, camrot_v, delta * v_accel)
+	if do_interpolate:
+		cam_v.rotation_degrees.x = lerp(cam_v.rotation_degrees.x, camrot_v, delta * v_accel)
+		if not lock_horiz:
+			cam_h.rotation_degrees.y = lerp(cam_h.rotation_degrees.y, camrot_h, delta * h_accel)
+	else:
+		cam_v.rotation_degrees.x = camrot_v * delta * 150
+		if not lock_horiz:
+			cam_h.rotation_degrees.y = camrot_h * delta * 150

@@ -1,6 +1,16 @@
 @tool
 extends Node3D
 
+var character_scene: PackedScene = load("res://character/character.tscn")
+var curr_character = null
+var exploring: bool = false:
+	set(value):
+		if value:
+			$UI.hide()
+		else:
+			$UI.show()
+		exploring = value
+
 @onready var env_parent = $Environment
 var env_updated := true
 @export var environment: PackedScene:
@@ -17,6 +27,14 @@ var env_updated := true
 var seed_button_pressed: bool = false
 var curr_seed_button: SeedButton = null
 var curr_plant_mesh: Node3D = null
+var selected_pos: Vector3 = Vector3.ZERO:
+	set(value):
+		if value != Vector3.ZERO:
+			$SelectedRing.show()
+			$SelectedRing.global_position = selected_pos
+		else:
+			$SelectedRing.hide()
+		selected_pos = value
 
 func _ready():
 	if not env_updated:
@@ -31,7 +49,24 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
+	if exploring:
+		if Input.is_action_pressed("escape"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			if not curr_character:
+				return
+			curr_character.queue_free()
+			$MovableCamera3D.cam.current = true
+			curr_character = null
+			exploring = false
+		return
+	
+	# Handle seed drag/drop and click position	
 	var pos = project_mouse_position()
+	if Input.is_action_pressed("left_click"):
+		if pos:
+			selected_pos = pos
+		else:
+			selected_pos = Vector3.ZERO
 	if seed_button_pressed and curr_plant_mesh:
 		if pos:
 			curr_seed_button.make_transparent(true)
@@ -78,5 +113,14 @@ func project_mouse_position():
 	
 	if result:
 		# 'result.position' contains the collision point in the 3D world
-		var intersection = result.position
-		return intersection
+		# result has some other useful info too (like normals, object IDs)
+		return result.position
+
+func _on_explore_button_pressed() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	exploring = true
+	curr_character = character_scene.instantiate()
+	add_child(curr_character)
+	await get_tree().physics_frame
+	curr_character.global_position = selected_pos
+	curr_character.cam.current = true

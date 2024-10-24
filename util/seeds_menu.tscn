@@ -6,15 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dxagb753mxdqs" path="res://plants/grass/tall_grass.png" id="4_8c7dm"]
 [ext_resource type="PackedScene" uid="uid://dkq4fquggw733" path="res://plants/start_tree/starter_tree.tscn" id="5_110n0"]
 
-[node name="SeedsMenu" type="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 0)
-offset_right = 300.0
-offset_bottom = 720.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource("1_wirmq")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
@@ -37,53 +34,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("5_110n0")
-
-[node name="SeedButton3" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton4" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton5" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton6" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton7" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton8" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton9" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton10" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton11" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="SeedButton12" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
