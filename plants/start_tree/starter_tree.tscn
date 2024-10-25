@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkq4fquggw733"]
+[gd_scene load_steps=8 format=3 uid="uid://dkq4fquggw733"]
 
 [ext_resource type="Script" path="res://plants/start_tree/starter_tree.gd" id="1_mc0bv"]
 [ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_p3mir"]
 [ext_resource type="PackedScene" uid="uid://bw1qebg6p4v2w" path="res://plants/start_tree/uploads_files_3120952_Tree.blend" id="3_4mnwk"]
+[ext_resource type="Texture2D" uid="uid://c153bo84jji42" path="res://plants/start_tree/textures/birch_bark.png" id="4_cwic1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yonqm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwjs3"]
+albedo_color = Color(0.894989, 0.86843, 0.796806, 1)
+albedo_texture = ExtResource("4_cwic1")
+normal_texture = SubResource("CompressedTexture2D_yonqm")
+clearcoat_enabled = true
+clearcoat = 0.25
+clearcoat_roughness = 1.0
+uv1_scale = Vector3(35, 35, 35)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mkfsy"]
+radius = 0.196255
+height = 6.51533
 
 [node name="StarterTree" instance=ExtResource("1_p3mir")]
 script = ExtResource("1_mc0bv")
@@ -12,8 +28,18 @@ transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="Tree" parent="uploads_files_3120952_Tree" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.066, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_qwjs3")
 
 [node name="tree_001337" parent="uploads_files_3120952_Tree" index="1"]
 visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.92673, 0.016457)
+shape = SubResource("CapsuleShape3D_mkfsy")
+disabled = true
 
 [editable path="uploads_files_3120952_Tree"]

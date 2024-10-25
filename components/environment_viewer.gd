@@ -8,7 +8,7 @@ var character_scene: PackedScene = load("res://character/character.tscn")
 var curr_character = null
 var seed_button_pressed: bool = false
 var curr_seed_button: SeedButton = null
-var curr_plant_mesh: Node3D = null
+var curr_plant: BasePlant = null
 
 @onready var selected_ring = $SelectedRing
 
@@ -43,30 +43,32 @@ func _physics_process(_delta: float) -> void:
 			selected_ring.show()
 		else:
 			selected_ring.hide()
-
-	if seed_button_pressed and curr_plant_mesh:
+	
+	if seed_button_pressed and curr_plant:
 		if pos:
 			curr_seed_button.make_transparent(true)
-			curr_plant_mesh.show()
-			curr_plant_mesh.global_position = pos
+			curr_plant.show()
+			curr_plant.global_position = pos
 		else:
-			curr_plant_mesh.hide()
+			curr_plant.hide()
 			curr_seed_button.make_transparent(false)
 
 func _on_seed_button_pressed(seed_button):
 	seed_button_pressed = true
 	curr_seed_button = seed_button
 	if curr_seed_button.plant_scene:
-		curr_plant_mesh = curr_seed_button.plant_scene.instantiate()
-		curr_plant_mesh.hide()
-		add_child(curr_plant_mesh)
+		curr_plant = curr_seed_button.plant_scene.instantiate()
+		curr_plant.hide()
+		add_child(curr_plant)
 
 func _on_seed_button_released(_seed_button):
 	seed_button_pressed = false
 	curr_seed_button = null
-	if not curr_plant_mesh.visible:
-		curr_plant_mesh.queue_free()
-	curr_plant_mesh = null
+	if not curr_plant.visible:
+		curr_plant.queue_free()
+	else:
+		curr_plant.set_shape_interact(true)
+	curr_plant = null
 
 func _on_explore_button_pressed():
 	$UI.hide()

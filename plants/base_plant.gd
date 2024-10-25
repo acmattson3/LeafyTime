@@ -3,3 +3,6 @@ class_name BasePlant
 # The base class for all plants
 
 var is_dead: bool = false
+
+func set_shape_interact(_is_enabled := true):
+	pass

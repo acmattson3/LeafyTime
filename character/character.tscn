@@ -8,6 +8,8 @@ radius = 0.4
 height = 1.8
 
 [node name="Character" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_tlg5a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -16,6 +18,8 @@ shape = SubResource("CapsuleShape3D_xsvmu")
 
 [node name="MovableCamera3D" parent="." instance=ExtResource("2_8hlat")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+cam_v_max = 35.0
+cam_v_min = -35.0
 do_interpolate = false
 do_right_click_motion = false
 camera_distance = 0.0

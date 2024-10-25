@@ -4,8 +4,8 @@ extends Node3D
 # Using left click, move the camera around the origin
 # Using mouse wheel, zoom camera in and out.
 
-const cam_v_max := 75.0 # Max vertical camera angle (lower bound)
-const cam_v_min := -75.0 # Min vertical camera angle (upper bound)
+@export var cam_v_max := 75.0 # Max vertical camera angle (lower bound)
+@export var cam_v_min := -75.0 # Min vertical camera angle (upper bound)
 @export var h_sens = 0.1 # Horizontal sensitivity
 @export var v_sens = 0.1 # Vertical sensitivity
 @export var do_interpolate := true # Do we interpolate camera movement?
@@ -41,14 +41,14 @@ var cam_rot_updated := true
 			else:
 				cam_rot_updated = false
 		camrot_h = value
-@export_range(cam_v_min, cam_v_max) var camrot_v: float = 0.0:
+@export_range(-89.99, 90.0) var camrot_v: float = 0.0:
 	set(value):
 		if Engine.is_editor_hint():
 			if cam_v:
 				cam_v.rotation_degrees.x = value
 			else:
 				cam_rot_updated = false
-		camrot_v = value
+		camrot_v = clamp(value, -cam_v_max, -cam_v_min)
 
 var can_input: bool = true # Can the camera be moved?
 @export var lock_horiz: bool = false # Lock horizontal rotation (vertical only)

@@ -1,10 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsytkbd66ktuj"]
+[gd_scene load_steps=11 format=3 uid="uid://dsytkbd66ktuj"]
+
+[ext_resource type="Texture2D" uid="uid://du5wig1p3cr3a" path="res://environments/ground_textures/Grass_001_COLOR.jpg" id="1_u56tv"]
+[ext_resource type="Texture2D" uid="uid://d1pcr03gb4jop" path="res://environments/ground_textures/Grass_001_OCC.jpg" id="2_3tmi7"]
+[ext_resource type="Texture2D" uid="uid://cod2wbyesqavr" path="res://environments/ground_textures/Grass_001_DISP.png" id="2_xn8mj"]
+[ext_resource type="Texture2D" uid="uid://b816hhvr0pbi2" path="res://environments/ground_textures/Grass_001_NORM.jpg" id="3_at3bm"]
+[ext_resource type="Texture2D" uid="uid://c30y0igggjycc" path="res://environments/ground_textures/Grass_001_ROUGH.jpg" id="4_8855k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i1bpd"]
 size = Vector3(60, 4, 60)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5yvq"]
-albedo_color = Color(3.60981e-08, 0.27902, 0.09821, 1)
+albedo_color = Color(0.361538, 0.703389, 0.465948, 1)
+albedo_texture = ExtResource("1_u56tv")
+metallic_specular = 0.0
+roughness_texture = ExtResource("4_8855k")
+normal_enabled = true
+normal_texture = ExtResource("3_at3bm")
+clearcoat_roughness = 1.0
+clearcoat_texture = ExtResource("4_8855k")
+ao_enabled = true
+ao_texture = ExtResource("2_3tmi7")
+heightmap_enabled = true
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("2_xn8mj")
+uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aqr1a"]
 points = PackedVector3Array(-30, -2, -30, -30, 2, -30, 30, -2, -30, -30, -2, 30, -30, 2, 30, 30, 2, -30, 30, -2, 30, 30, 2, 30)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bba74pl43jewo"]
+[gd_scene load_steps=10 format=3 uid="uid://bba74pl43jewo"]
 
 [ext_resource type="Script" path="res://components/environment_viewer.gd" id="1_npifu"]
 [ext_resource type="PackedScene" uid="uid://dwm31tm37ua5f" path="res://components/movable_camera_3d.tscn" id="1_xgvpr"]
@@ -17,7 +17,12 @@ background_mode = 2
 sky = SubResource("Sky_xop5o")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4dxb"]
+transparency = 1
+albedo_color = Color(0.601223, 0.601223, 0.601223, 0.454902)
+
 [sub_resource type="TorusMesh" id="TorusMesh_6co31"]
+material = SubResource("StandardMaterial3D_n4dxb")
 
 [node name="EnvironmentViewer" type="Node3D"]
 script = ExtResource("1_npifu")
@@ -31,9 +36,10 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="MovableCamera3D" parent="." instance=ExtResource("1_xgvpr")]
+cam_v_max = 85.0
+cam_v_min = 1.0
 zoom_sens = 50.0
 camrot_h = 45.0
-camrot_v = -30.0
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -67,6 +73,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ExploreButton" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Explore!"
