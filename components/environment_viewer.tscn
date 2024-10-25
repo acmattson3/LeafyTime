@@ -40,6 +40,7 @@ cam_v_max = 85.0
 cam_v_min = 1.0
 zoom_sens = 50.0
 camrot_h = 45.0
+camrot_v = -30.0
 
 [node name="Environment" type="Node3D" parent="."]
 
