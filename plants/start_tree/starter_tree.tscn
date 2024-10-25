@@ -2,15 +2,18 @@
 
 [ext_resource type="Script" path="res://plants/start_tree/starter_tree.gd" id="1_mc0bv"]
 [ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_p3mir"]
-[ext_resource type="PackedScene" uid="uid://dohl45pfcstpi" path="res://plants/start_tree/uploads_files_3120952_Tree.gltf" id="2_vik5u"]
+[ext_resource type="PackedScene" uid="uid://bw1qebg6p4v2w" path="res://plants/start_tree/uploads_files_3120952_Tree.blend" id="3_4mnwk"]
 
 [node name="StarterTree" instance=ExtResource("1_p3mir")]
 script = ExtResource("1_mc0bv")
 
-[node name="uploads_files_3120952_Tree" parent="." index="0" instance=ExtResource("2_vik5u")]
+[node name="uploads_files_3120952_Tree" parent="." index="0" instance=ExtResource("3_4mnwk")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="Tree" parent="uploads_files_3120952_Tree" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.066, 0)
+
+[node name="tree_001337" parent="uploads_files_3120952_Tree" index="1"]
+visible = false
 
 [editable path="uploads_files_3120952_Tree"]
