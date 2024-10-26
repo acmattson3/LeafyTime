@@ -13,3 +13,7 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Helper programs and associated files
+get_files.sh
+aggregated_texts.txt
