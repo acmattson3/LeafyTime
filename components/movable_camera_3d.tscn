@@ -4,8 +4,8 @@
 
 [node name="MovableCamera3D" type="Node3D"]
 script = ExtResource("1_txhd5")
-cam_v_max = null
-cam_v_min = null
+min_distance = null
+max_distance = null
 camera_distance = 60.0
 
 [node name="Horizontal" type="Node3D" parent="."]

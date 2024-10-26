@@ -1,5 +1,7 @@
 extends Node
 
+var exploring: bool = false # Are we currently exploring an environment?
+
 signal seed_button_pressed(seed_button)
 signal seed_button_released(seed_button)
 signal start_study_session()

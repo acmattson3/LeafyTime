@@ -27,14 +27,29 @@ texture_margin_bottom = 60.0
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(150, 150)
 anchors_preset = -1
-anchor_right = 0.021
-anchor_bottom = 0.036
-offset_right = 0.119999
-offset_bottom = 0.079998
+anchor_right = 0.117
+anchor_bottom = 0.208
+offset_right = -122.76
+offset_bottom = -123.76
 script = ExtResource("1_iqlj3")
 plant_icon = ExtResource("1_h0mno")
 
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Plant"
+
+[node name="DurationLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0h, 0m, 0s"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2m7tb")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_7f34q")
@@ -48,5 +63,5 @@ icon = ExtResource("1_h0mno")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_down" from="VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="VBoxContainer/Button" to="." method="_on_button_button_up"]

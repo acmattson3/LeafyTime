@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bba74pl43jewo"]
+[gd_scene load_steps=15 format=3 uid="uid://bba74pl43jewo"]
 
 [ext_resource type="Script" path="res://components/environment_viewer.gd" id="1_npifu"]
 [ext_resource type="PackedScene" uid="uid://dwm31tm37ua5f" path="res://components/movable_camera_3d.tscn" id="1_xgvpr"]
@@ -24,6 +24,20 @@ albedo_color = Color(0.601223, 0.601223, 0.601223, 0.454902)
 [sub_resource type="TorusMesh" id="TorusMesh_6co31"]
 material = SubResource("StandardMaterial3D_n4dxb")
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_now4o"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1mjn6"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_be27o"]
+plane = Plane(1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yilw3"]
+plane = Plane(0, 0, -1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fhh5e"]
+plane = Plane(-1, 0, 0, 0)
+
 [node name="EnvironmentViewer" type="Node3D"]
 script = ExtResource("1_npifu")
 environment = ExtResource("2_08vek")
@@ -38,6 +52,8 @@ shadow_enabled = true
 [node name="MovableCamera3D" parent="." instance=ExtResource("1_xgvpr")]
 cam_v_max = 85.0
 cam_v_min = 1.0
+min_distance = 3.0
+max_distance = 180.0
 zoom_sens = 50.0
 camrot_h = 45.0
 camrot_v = -30.0
@@ -98,5 +114,27 @@ layout_mode = 2
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("TorusMesh_6co31")
+
+[node name="WorldBorder" type="StaticBody3D" parent="."]
+
+[node name="WorldBoundaryY+" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+shape = SubResource("WorldBoundaryShape3D_now4o")
+
+[node name="WorldBoundaryZ+" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+shape = SubResource("WorldBoundaryShape3D_1mjn6")
+
+[node name="WorldBoundaryX+" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_be27o")
+
+[node name="WorldBoundaryZ-" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+shape = SubResource("WorldBoundaryShape3D_yilw3")
+
+[node name="WorldBoundaryX-" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_fhh5e")
 
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/ExploreButton" to="." method="_on_explore_button_pressed"]

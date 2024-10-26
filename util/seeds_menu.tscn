@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwihfhava7efc"]
+[gd_scene load_steps=7 format=3 uid="uid://dwihfhava7efc"]
 
 [ext_resource type="PackedScene" uid="uid://d03ttnf36pyb8" path="res://util/seed_button.tscn" id="1_3vvey"]
 [ext_resource type="Script" path="res://util/seeds_menu.gd" id="1_wirmq"]
 [ext_resource type="PackedScene" uid="uid://bymddg6g2np50" path="res://plants/grass/grass.tscn" id="3_w7b0q"]
 [ext_resource type="Texture2D" uid="uid://dxagb753mxdqs" path="res://plants/grass/tall_grass.png" id="4_8c7dm"]
-[ext_resource type="PackedScene" uid="uid://dkq4fquggw733" path="res://plants/start_tree/starter_tree.tscn" id="5_110n0"]
+[ext_resource type="PackedScene" uid="uid://dkq4fquggw733" path="res://plants/birch_tree/birch_tree.tscn" id="5_110n0"]
+[ext_resource type="Texture2D" uid="uid://cn7sqaldo2iw6" path="res://plants/birch_tree/birch_tree_transparent.png" id="6_ogyos"]
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -34,3 +35,4 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("5_110n0")
+plant_icon = ExtResource("6_ogyos")

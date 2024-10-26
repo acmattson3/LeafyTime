@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bw1qebg6p4v2w"
-path="res://.godot/imported/uploads_files_3120952_Tree.blend-63a6b0079d3c76c8476773949438c7b2.scn"
+path="res://.godot/imported/uploads_files_3120952_Tree.blend-52a71bfb81f360ec873c913d46b9014f.scn"
 
 [deps]
 
-source_file="res://plants/start_tree/uploads_files_3120952_Tree.blend"
-dest_files=["res://.godot/imported/uploads_files_3120952_Tree.blend-63a6b0079d3c76c8476773949438c7b2.scn"]
+source_file="res://plants/birch_tree/uploads_files_3120952_Tree.blend"
+dest_files=["res://.godot/imported/uploads_files_3120952_Tree.blend-52a71bfb81f360ec873c913d46b9014f.scn"]
 
 [params]
 

@@ -18,18 +18,22 @@ var v_accel = 10
 
 @export var do_right_click_motion = true
 
+@export var min_distance = 3.0
+@export var max_distance = 240.0
 var set_cam_dist := true
-@export_range(0.0, 240.0) var camera_distance: float = 120.0: # Distance of camera from rotation origin
+@export var camera_distance: float = 120.0: # Distance of camera from rotation origin
 	set(value):
-		if value > 240.0:
-			value = 240.0
-		elif value < 0.0:
-			value = 0.0
+		camera_distance = value
+		if max_distance != null and min_distance != null:
+			if value > max_distance:
+				value = max_distance
+			elif value < min_distance:
+				value = min_distance
+			camera_distance = clamp(value, min_distance, max_distance)
 		if cam:
 			cam.position.z = value
 		else:
 			set_cam_dist = false
-		camera_distance = value
 @export_range(1.0, 100.0) var zoom_sens: float = 2.5 # Zoom sensitivity
 
 var cam_rot_updated := true

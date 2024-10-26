@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c153bo84jji42"
-path.s3tc="res://.godot/imported/birch_bark.png-694ab20418ef441861a7a68dce3977fe.s3tc.ctex"
+uid="uid://bl02snal017u8"
+path.s3tc="res://.godot/imported/serrate.jpg-a69067f646133389d96f69188d9caa78.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://plants/start_tree/textures/birch_bark.png"
-dest_files=["res://.godot/imported/birch_bark.png-694ab20418ef441861a7a68dce3977fe.s3tc.ctex"]
+source_file="res://plants/birch_tree/textures/serrate.jpg"
+dest_files=["res://.godot/imported/serrate.jpg-a69067f646133389d96f69188d9caa78.s3tc.ctex"]
 
 [params]
 
