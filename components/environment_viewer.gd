@@ -3,6 +3,7 @@ extends Node3D
 
 @onready var env_parent = $Environment # Where environments are kept
 @export var environment: PackedScene # The current environment
+var curr_env = null
 
 var character_scene: PackedScene = load("res://character/character.tscn")
 var curr_character = null # The current character scene
@@ -18,7 +19,8 @@ func _ready():
 	if environment and env_parent:
 		for child in env_parent.get_children(): # Remove current environments, if any
 			child.queue_free()
-		env_parent.add_child(environment.instantiate()) # Add environment from export
+		curr_env = environment.instantiate()
+		env_parent.add_child(curr_env) # Add environment from export
 	
 	if Engine.is_editor_hint():
 		return # Keep editor from running unnecessary code
@@ -28,10 +30,23 @@ func _ready():
 	EventBus.seed_button_released.connect(_on_seed_button_released)
 	EventBus.enter_explore_mode.connect(_on_explore_button_pressed)
 	EventBus.exit_explore_mode.connect(_exit_explore_mode)
+	EventBus.load_game.connect(_on_load_game)
+
+func _on_load_game():
+	var plants: Dictionary = GameManager.get_plants_in_env(curr_env.env_id)
+	for plant_name in plants.keys():
+		var new_plant = load(plants[plant_name].path).instantiate()
+		new_plant.is_dead = plants[plant_name].is_dead
+		new_plant.name = plant_name
+		curr_env.add_child(new_plant, true)
+		new_plant.global_position = plants[plant_name].pos
+	%LoadingLabel.hide()
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return # Keep editor from running unnecessary code
+	if not GameManager.done_emit_load:
+		return # We haven't loaded save data yet!
 	if EventBus.exploring:
 		return # The viewer should do nothing if we are exploring an environment.
 
@@ -73,7 +88,7 @@ func _on_seed_button_pressed(seed_button):
 	if curr_seed_button.plant_scene: # The button has a plant associated with it
 		curr_plant = curr_seed_button.plant_scene.instantiate()
 		curr_plant.hide()
-		add_child(curr_plant)
+		curr_env.add_child(curr_plant, true)
 
 # Handle when we have released a seed button. We may be dropping it into:
 #   * The seeds menu
@@ -86,6 +101,7 @@ func _on_seed_button_released(_seed_button):
 		curr_plant.queue_free() # Get rid of it
 	else: # The plant can be placed
 		curr_plant.set_shape_interact(true) # Make it have collisions
+		GameManager.update_plant_in_environment(curr_env.env_id, curr_plant)
 	curr_plant = null
 
 # Handle when the explore button is pressed (entering explore mode)

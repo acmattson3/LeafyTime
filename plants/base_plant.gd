@@ -45,6 +45,11 @@ func get_readable_study_duration():
 		duration_string = "Instant"
 	return duration_string
 
+# Virtual function for all plants.
+# Returns the current plant's scene path.
+func get_plant_path():
+	return ""
+
 func get_plant_name():
 	return plant_name
 

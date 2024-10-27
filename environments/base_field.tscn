@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsytkbd66ktuj"]
+[gd_scene load_steps=10 format=3 uid="uid://dsytkbd66ktuj"]
 
 [ext_resource type="Texture2D" uid="uid://du5wig1p3cr3a" path="res://environments/ground_textures/Grass_001_COLOR.jpg" id="1_u56tv"]
+[ext_resource type="Script" path="res://environments/base_field.gd" id="1_x28tb"]
 [ext_resource type="Texture2D" uid="uid://d1pcr03gb4jop" path="res://environments/ground_textures/Grass_001_OCC.jpg" id="2_3tmi7"]
 [ext_resource type="Texture2D" uid="uid://cod2wbyesqavr" path="res://environments/ground_textures/Grass_001_DISP.png" id="2_xn8mj"]
 [ext_resource type="Texture2D" uid="uid://b816hhvr0pbi2" path="res://environments/ground_textures/Grass_001_NORM.jpg" id="3_at3bm"]
@@ -31,6 +32,7 @@ uv1_scale = Vector3(50, 50, 50)
 points = PackedVector3Array(-30, -2, -30, -30, 2, -30, 30, -2, -30, -30, -2, 30, -30, 2, 30, 30, 2, -30, 30, -2, 30, 30, 2, 30)
 
 [node name="BaseField" type="StaticBody3D"]
+script = ExtResource("1_x28tb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
