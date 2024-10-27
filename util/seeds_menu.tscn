@@ -8,29 +8,34 @@
 [ext_resource type="Texture2D" uid="uid://cn7sqaldo2iw6" path="res://plants/birch_tree/birch_tree_transparent.png" id="6_ogyos"]
 
 [node name="PanelContainer" type="PanelContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(160, 0)
 script = ExtResource("1_wirmq")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 clip_contents = false
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+[node name="GridContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 3
 theme_override_constants/v_separation = 3
-columns = 2
 
-[node name="SeedButton" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
+[node name="SeedButton" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("3_w7b0q")
 plant_icon = ExtResource("4_8c7dm")
 
-[node name="SeedButton2" parent="ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
+[node name="SeedButton2" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource("1_3vvey")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
