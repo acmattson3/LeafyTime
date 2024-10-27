@@ -55,15 +55,15 @@ func _physics_process(_delta: float) -> void:
 # Checks if a given intersect_ray() Dictionary is valid for placing a plant
 func result_is_valid(result):
 	if not result:
-		return # No result
+		return false # No result
 	if result is not Dictionary:
-		return # Invalid type passed
+		return false # Invalid type passed
 	if not result.position:
 		return false # Invalid position
 	if result.collider is BasePlant:
 		return false # Placing on another plant
 	if result.collider == $WorldBorder:
-		return false # Placing on a world boundary
+		return false # Placing on a world border
 	return true
 
 # Handle when we have clicked a seed button

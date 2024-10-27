@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl02snal017u8"
+uid="uid://bg81q1lu7w3lw"
 path.s3tc="res://.godot/imported/serrate.jpg-a69067f646133389d96f69188d9caa78.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://plants/birch_tree/textures/serrate.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

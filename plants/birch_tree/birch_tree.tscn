@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkq4fquggw733"]
+[gd_scene load_steps=11 format=3 uid="uid://dkq4fquggw733"]
 
 [ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_oxea0"]
 [ext_resource type="Script" path="res://plants/birch_tree/birch_tree.gd" id="2_dmnvb"]
 [ext_resource type="PackedScene" uid="uid://bw1qebg6p4v2w" path="res://plants/birch_tree/uploads_files_3120952_Tree.blend" id="3_8w8rp"]
 [ext_resource type="Texture2D" uid="uid://c153bo84jji42" path="res://plants/birch_tree/textures/birch_bark.png" id="4_567jr"]
+[ext_resource type="Texture2D" uid="uid://bg81q1lu7w3lw" path="res://plants/birch_tree/textures/serrate.jpg" id="5_jmu4y"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yonqm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwjs3"]
-albedo_color = Color(0.894989, 0.86843, 0.796806, 1)
+albedo_color = Color(0.526071, 0.528798, 0.495505, 1)
 albedo_texture = ExtResource("4_567jr")
 normal_texture = SubResource("CompressedTexture2D_yonqm")
 clearcoat_enabled = true
@@ -16,9 +17,30 @@ clearcoat = 0.25
 clearcoat_roughness = 1.0
 uv1_scale = Vector3(35, 35, 35)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q73rm"]
+albedo_color = Color(0.364981, 0.352205, 0.254012, 1)
+albedo_texture = ExtResource("4_567jr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ph1ss"]
+cull_mode = 2
+albedo_color = Color(0.343213, 0.354476, 0.260511, 1)
+albedo_texture = ExtResource("5_jmu4y")
+metallic_specular = 0.2
+emission = Color(0.894922, 0.894922, 0.894922, 1)
+emission_operator = 1
+normal_enabled = true
+normal_texture = ExtResource("5_jmu4y")
+rim_tint = 0.0
+clearcoat_enabled = true
+clearcoat = 0.06
+clearcoat_roughness = 1.0
+backlight_enabled = true
+backlight = Color(0.133196, 0.133196, 0.133196, 1)
+refraction_enabled = true
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mkfsy"]
-radius = 0.196255
-height = 6.51533
+radius = 0.16
+height = 6.5
 
 [node name="BirchTree" instance=ExtResource("1_oxea0")]
 script = ExtResource("2_dmnvb")
@@ -31,6 +53,1350 @@ transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 [node name="Tree" parent="uploads_files_3120952_Tree" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.066, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_qwjs3")
+
+[node name="tree_001" parent="uploads_files_3120952_Tree/Tree/leafs" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0012" parent="uploads_files_3120952_Tree/Tree/leafs" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0013" parent="uploads_files_3120952_Tree/Tree/leafs" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0014" parent="uploads_files_3120952_Tree/Tree/leafs" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0015" parent="uploads_files_3120952_Tree/Tree/leafs" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0016" parent="uploads_files_3120952_Tree/Tree/leafs" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0017" parent="uploads_files_3120952_Tree/Tree/leafs" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0018" parent="uploads_files_3120952_Tree/Tree/leafs" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_0019" parent="uploads_files_3120952_Tree/Tree/leafs" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00110" parent="uploads_files_3120952_Tree/Tree/leafs" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00111" parent="uploads_files_3120952_Tree/Tree/leafs" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00112" parent="uploads_files_3120952_Tree/Tree/leafs" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00113" parent="uploads_files_3120952_Tree/Tree/leafs" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00114" parent="uploads_files_3120952_Tree/Tree/leafs" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00115" parent="uploads_files_3120952_Tree/Tree/leafs" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00116" parent="uploads_files_3120952_Tree/Tree/leafs" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00117" parent="uploads_files_3120952_Tree/Tree/leafs" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00118" parent="uploads_files_3120952_Tree/Tree/leafs" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00119" parent="uploads_files_3120952_Tree/Tree/leafs" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00120" parent="uploads_files_3120952_Tree/Tree/leafs" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00121" parent="uploads_files_3120952_Tree/Tree/leafs" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00122" parent="uploads_files_3120952_Tree/Tree/leafs" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00123" parent="uploads_files_3120952_Tree/Tree/leafs" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00124" parent="uploads_files_3120952_Tree/Tree/leafs" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00125" parent="uploads_files_3120952_Tree/Tree/leafs" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00126" parent="uploads_files_3120952_Tree/Tree/leafs" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00127" parent="uploads_files_3120952_Tree/Tree/leafs" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00128" parent="uploads_files_3120952_Tree/Tree/leafs" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00129" parent="uploads_files_3120952_Tree/Tree/leafs" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00130" parent="uploads_files_3120952_Tree/Tree/leafs" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00131" parent="uploads_files_3120952_Tree/Tree/leafs" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00132" parent="uploads_files_3120952_Tree/Tree/leafs" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00133" parent="uploads_files_3120952_Tree/Tree/leafs" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00134" parent="uploads_files_3120952_Tree/Tree/leafs" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00135" parent="uploads_files_3120952_Tree/Tree/leafs" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00136" parent="uploads_files_3120952_Tree/Tree/leafs" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00137" parent="uploads_files_3120952_Tree/Tree/leafs" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00138" parent="uploads_files_3120952_Tree/Tree/leafs" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00139" parent="uploads_files_3120952_Tree/Tree/leafs" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00140" parent="uploads_files_3120952_Tree/Tree/leafs" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00141" parent="uploads_files_3120952_Tree/Tree/leafs" index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00142" parent="uploads_files_3120952_Tree/Tree/leafs" index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00143" parent="uploads_files_3120952_Tree/Tree/leafs" index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00144" parent="uploads_files_3120952_Tree/Tree/leafs" index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00145" parent="uploads_files_3120952_Tree/Tree/leafs" index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00146" parent="uploads_files_3120952_Tree/Tree/leafs" index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00147" parent="uploads_files_3120952_Tree/Tree/leafs" index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00148" parent="uploads_files_3120952_Tree/Tree/leafs" index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00149" parent="uploads_files_3120952_Tree/Tree/leafs" index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00150" parent="uploads_files_3120952_Tree/Tree/leafs" index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00151" parent="uploads_files_3120952_Tree/Tree/leafs" index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00152" parent="uploads_files_3120952_Tree/Tree/leafs" index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00153" parent="uploads_files_3120952_Tree/Tree/leafs" index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00154" parent="uploads_files_3120952_Tree/Tree/leafs" index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00155" parent="uploads_files_3120952_Tree/Tree/leafs" index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00156" parent="uploads_files_3120952_Tree/Tree/leafs" index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00157" parent="uploads_files_3120952_Tree/Tree/leafs" index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00158" parent="uploads_files_3120952_Tree/Tree/leafs" index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00159" parent="uploads_files_3120952_Tree/Tree/leafs" index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00160" parent="uploads_files_3120952_Tree/Tree/leafs" index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00161" parent="uploads_files_3120952_Tree/Tree/leafs" index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00162" parent="uploads_files_3120952_Tree/Tree/leafs" index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00163" parent="uploads_files_3120952_Tree/Tree/leafs" index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00164" parent="uploads_files_3120952_Tree/Tree/leafs" index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00165" parent="uploads_files_3120952_Tree/Tree/leafs" index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00166" parent="uploads_files_3120952_Tree/Tree/leafs" index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00167" parent="uploads_files_3120952_Tree/Tree/leafs" index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00168" parent="uploads_files_3120952_Tree/Tree/leafs" index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00169" parent="uploads_files_3120952_Tree/Tree/leafs" index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00170" parent="uploads_files_3120952_Tree/Tree/leafs" index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00171" parent="uploads_files_3120952_Tree/Tree/leafs" index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00172" parent="uploads_files_3120952_Tree/Tree/leafs" index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00173" parent="uploads_files_3120952_Tree/Tree/leafs" index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00174" parent="uploads_files_3120952_Tree/Tree/leafs" index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00175" parent="uploads_files_3120952_Tree/Tree/leafs" index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00176" parent="uploads_files_3120952_Tree/Tree/leafs" index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00177" parent="uploads_files_3120952_Tree/Tree/leafs" index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00178" parent="uploads_files_3120952_Tree/Tree/leafs" index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00179" parent="uploads_files_3120952_Tree/Tree/leafs" index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00180" parent="uploads_files_3120952_Tree/Tree/leafs" index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00181" parent="uploads_files_3120952_Tree/Tree/leafs" index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00182" parent="uploads_files_3120952_Tree/Tree/leafs" index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00183" parent="uploads_files_3120952_Tree/Tree/leafs" index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00184" parent="uploads_files_3120952_Tree/Tree/leafs" index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00185" parent="uploads_files_3120952_Tree/Tree/leafs" index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00186" parent="uploads_files_3120952_Tree/Tree/leafs" index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00187" parent="uploads_files_3120952_Tree/Tree/leafs" index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00188" parent="uploads_files_3120952_Tree/Tree/leafs" index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00189" parent="uploads_files_3120952_Tree/Tree/leafs" index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00190" parent="uploads_files_3120952_Tree/Tree/leafs" index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00191" parent="uploads_files_3120952_Tree/Tree/leafs" index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00192" parent="uploads_files_3120952_Tree/Tree/leafs" index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00193" parent="uploads_files_3120952_Tree/Tree/leafs" index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00194" parent="uploads_files_3120952_Tree/Tree/leafs" index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00195" parent="uploads_files_3120952_Tree/Tree/leafs" index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00196" parent="uploads_files_3120952_Tree/Tree/leafs" index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00197" parent="uploads_files_3120952_Tree/Tree/leafs" index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00198" parent="uploads_files_3120952_Tree/Tree/leafs" index="97"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_00199" parent="uploads_files_3120952_Tree/Tree/leafs" index="98"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001100" parent="uploads_files_3120952_Tree/Tree/leafs" index="99"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001101" parent="uploads_files_3120952_Tree/Tree/leafs" index="100"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001102" parent="uploads_files_3120952_Tree/Tree/leafs" index="101"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001103" parent="uploads_files_3120952_Tree/Tree/leafs" index="102"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001104" parent="uploads_files_3120952_Tree/Tree/leafs" index="103"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001105" parent="uploads_files_3120952_Tree/Tree/leafs" index="104"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001106" parent="uploads_files_3120952_Tree/Tree/leafs" index="105"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001107" parent="uploads_files_3120952_Tree/Tree/leafs" index="106"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001108" parent="uploads_files_3120952_Tree/Tree/leafs" index="107"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001109" parent="uploads_files_3120952_Tree/Tree/leafs" index="108"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001110" parent="uploads_files_3120952_Tree/Tree/leafs" index="109"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001111" parent="uploads_files_3120952_Tree/Tree/leafs" index="110"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001112" parent="uploads_files_3120952_Tree/Tree/leafs" index="111"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001113" parent="uploads_files_3120952_Tree/Tree/leafs" index="112"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001114" parent="uploads_files_3120952_Tree/Tree/leafs" index="113"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001115" parent="uploads_files_3120952_Tree/Tree/leafs" index="114"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001116" parent="uploads_files_3120952_Tree/Tree/leafs" index="115"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001117" parent="uploads_files_3120952_Tree/Tree/leafs" index="116"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001118" parent="uploads_files_3120952_Tree/Tree/leafs" index="117"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001119" parent="uploads_files_3120952_Tree/Tree/leafs" index="118"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001120" parent="uploads_files_3120952_Tree/Tree/leafs" index="119"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001121" parent="uploads_files_3120952_Tree/Tree/leafs" index="120"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001122" parent="uploads_files_3120952_Tree/Tree/leafs" index="121"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001123" parent="uploads_files_3120952_Tree/Tree/leafs" index="122"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001124" parent="uploads_files_3120952_Tree/Tree/leafs" index="123"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001125" parent="uploads_files_3120952_Tree/Tree/leafs" index="124"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001126" parent="uploads_files_3120952_Tree/Tree/leafs" index="125"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001127" parent="uploads_files_3120952_Tree/Tree/leafs" index="126"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001128" parent="uploads_files_3120952_Tree/Tree/leafs" index="127"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001129" parent="uploads_files_3120952_Tree/Tree/leafs" index="128"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001130" parent="uploads_files_3120952_Tree/Tree/leafs" index="129"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001131" parent="uploads_files_3120952_Tree/Tree/leafs" index="130"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001132" parent="uploads_files_3120952_Tree/Tree/leafs" index="131"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001133" parent="uploads_files_3120952_Tree/Tree/leafs" index="132"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001134" parent="uploads_files_3120952_Tree/Tree/leafs" index="133"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001135" parent="uploads_files_3120952_Tree/Tree/leafs" index="134"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001136" parent="uploads_files_3120952_Tree/Tree/leafs" index="135"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001137" parent="uploads_files_3120952_Tree/Tree/leafs" index="136"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001138" parent="uploads_files_3120952_Tree/Tree/leafs" index="137"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001139" parent="uploads_files_3120952_Tree/Tree/leafs" index="138"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001140" parent="uploads_files_3120952_Tree/Tree/leafs" index="139"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001141" parent="uploads_files_3120952_Tree/Tree/leafs" index="140"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001142" parent="uploads_files_3120952_Tree/Tree/leafs" index="141"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001143" parent="uploads_files_3120952_Tree/Tree/leafs" index="142"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001144" parent="uploads_files_3120952_Tree/Tree/leafs" index="143"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001145" parent="uploads_files_3120952_Tree/Tree/leafs" index="144"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001146" parent="uploads_files_3120952_Tree/Tree/leafs" index="145"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001147" parent="uploads_files_3120952_Tree/Tree/leafs" index="146"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001148" parent="uploads_files_3120952_Tree/Tree/leafs" index="147"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001149" parent="uploads_files_3120952_Tree/Tree/leafs" index="148"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001150" parent="uploads_files_3120952_Tree/Tree/leafs" index="149"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001151" parent="uploads_files_3120952_Tree/Tree/leafs" index="150"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001152" parent="uploads_files_3120952_Tree/Tree/leafs" index="151"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001153" parent="uploads_files_3120952_Tree/Tree/leafs" index="152"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001154" parent="uploads_files_3120952_Tree/Tree/leafs" index="153"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001155" parent="uploads_files_3120952_Tree/Tree/leafs" index="154"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001156" parent="uploads_files_3120952_Tree/Tree/leafs" index="155"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001157" parent="uploads_files_3120952_Tree/Tree/leafs" index="156"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001158" parent="uploads_files_3120952_Tree/Tree/leafs" index="157"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001159" parent="uploads_files_3120952_Tree/Tree/leafs" index="158"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001160" parent="uploads_files_3120952_Tree/Tree/leafs" index="159"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001161" parent="uploads_files_3120952_Tree/Tree/leafs" index="160"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001162" parent="uploads_files_3120952_Tree/Tree/leafs" index="161"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001163" parent="uploads_files_3120952_Tree/Tree/leafs" index="162"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001164" parent="uploads_files_3120952_Tree/Tree/leafs" index="163"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001165" parent="uploads_files_3120952_Tree/Tree/leafs" index="164"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001166" parent="uploads_files_3120952_Tree/Tree/leafs" index="165"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001167" parent="uploads_files_3120952_Tree/Tree/leafs" index="166"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001168" parent="uploads_files_3120952_Tree/Tree/leafs" index="167"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001169" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001170" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001171" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001172" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001173" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001174" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001175" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001176" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001177" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001178" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001179" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001180" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001181" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001182" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001183" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001184" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001185" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001186" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001187" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001188" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001189" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001190" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001191" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001192" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001193" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001194" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001195" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001196" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001197" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001198" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001199" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001200" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001201" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001202" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001203" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001204" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001205" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001206" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001207" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001208" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001209" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001210" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001211" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001212" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001213" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001214" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001215" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001216" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001217" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001218" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001219" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001220" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001221" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001222" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001223" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001224" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001225" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001226" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001227" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001228" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001229" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001230" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001231" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001232" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001233" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001234" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001235" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001236" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001237" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001238" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001239" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001240" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001241" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001242" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001243" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001244" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001245" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001246" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001247" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001248" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001249" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001250" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001251" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001252" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001253" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001254" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001255" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001256" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001257" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001258" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001259" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001260" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001261" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001262" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001263" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001264" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001265" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001266" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="97"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001267" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="98"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001268" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="99"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001269" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="100"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001270" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="101"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001271" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="102"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001272" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="103"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001273" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="104"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001274" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="105"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001275" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="106"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001276" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="107"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001277" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="108"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001278" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="109"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001279" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="110"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001280" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="111"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001281" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="112"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001282" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="113"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001283" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="114"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001284" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="115"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001285" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="116"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001286" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="117"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001287" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="118"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001288" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="119"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001289" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="120"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001290" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="121"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001291" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="122"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001292" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="123"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001293" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="124"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001294" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="125"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001295" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="126"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001296" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="127"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001297" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="128"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001298" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="129"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001299" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="130"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001300" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="131"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001301" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="132"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001302" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="133"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001303" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="134"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001304" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="135"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001305" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="136"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001306" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="137"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001307" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="138"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001308" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="139"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001309" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="140"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001310" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="141"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001311" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="142"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001312" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="143"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001313" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="144"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001314" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="145"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001315" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="146"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001316" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="147"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001317" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="148"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001318" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="149"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001319" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="150"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001320" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="151"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001321" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="152"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001322" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="153"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001323" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="154"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001324" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="155"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001325" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="156"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001326" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="157"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001327" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="158"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001328" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="159"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001329" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="160"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001330" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="161"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001331" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="162"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001332" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="163"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001333" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="164"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001334" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="165"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001335" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="166"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
+
+[node name="tree_001336" parent="uploads_files_3120952_Tree/Tree/leafs_003" index="167"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q73rm")
+surface_material_override/1 = SubResource("StandardMaterial3D_ph1ss")
 
 [node name="tree_001337" parent="uploads_files_3120952_Tree" index="1"]
 visible = false
