@@ -40,9 +40,10 @@ func _on_load_game():
 		new_plant.name = plant_name
 		curr_env.add_child(new_plant, true)
 		new_plant.global_position = plants[plant_name].pos
+		new_plant.rotation = plants[plant_name].rot
 	%LoadingLabel.hide()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return # Keep editor from running unnecessary code
 	if not GameManager.done_emit_load:
@@ -60,6 +61,10 @@ func _physics_process(_delta: float) -> void:
 	# Handle plant drag/drop
 	if seed_button_pressed and curr_plant:
 		if result_is_valid(result):
+			if Input.is_action_pressed("rotate_left"):
+				curr_plant.rotation.y += delta
+			if Input.is_action_pressed("rotate_right"):
+				curr_plant.rotation.y -= delta
 			curr_seed_button.make_transparent(true)
 			curr_plant.show()
 			curr_plant.global_position = result.position

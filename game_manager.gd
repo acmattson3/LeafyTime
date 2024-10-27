@@ -73,11 +73,13 @@ func _merge_new_plant_data(env_id: int, new_data: Dictionary):
 func update_plant_in_environment(env_id: int, plant_node: BasePlant):
 	var plant_path = plant_node.get_plant_path()
 	var plant_pos = plant_node.global_position
+	var plant_rot = plant_node.rotation
 	var plant_dead = plant_node.is_dead
 	var new_data = {
 		plant_node.name: {
 			"path": plant_path, 
 			"pos": plant_pos, 
+			"rot": plant_rot,
 			"is_dead": plant_dead
 		}
 	}
