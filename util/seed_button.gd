@@ -6,6 +6,14 @@ class_name SeedButton
 @export var plant_scene: PackedScene # The plant associated with this button
 @export var plant_icon: CompressedTexture2D # The image icon for this button
 
+@onready var plant_name: String:
+	set(value):
+		%NameLabel.text = value
+		plant_name = value
+@onready var duration_seconds: float
+
+@onready var unlocked: bool = false # Have we unlocked this seed?
+
 var do_set_position = false
 @onready var start_position = global_position
 
@@ -14,9 +22,9 @@ func _ready():
 		button.icon = plant_icon
 	if plant_scene and not Engine.is_editor_hint():
 		var plant = plant_scene.instantiate()
-		var duration_text = plant.get_readable_study_duration()
-		%DurationLabel.text = duration_text
-		%NameLabel.text = plant.get_plant_name()
+		duration_seconds = plant.get_study_duration()
+		%DurationLabel.text = plant.get_readable_study_duration()
+		plant_name = plant.get_plant_name()
 		
 
 func _physics_process(_delta: float) -> void:
