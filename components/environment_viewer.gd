@@ -88,26 +88,30 @@ func result_is_valid(result):
 
 # Handle when we have clicked a seed button
 func _on_seed_button_pressed(seed_button):
-	seed_button_pressed = true
-	curr_seed_button = seed_button
-	if curr_seed_button.plant_scene: # The button has a plant associated with it
-		curr_plant = curr_seed_button.plant_scene.instantiate()
-		curr_plant.hide()
-		curr_env.add_child(curr_plant, true)
+	if seed_button.unlocked:
+		seed_button_pressed = true
+		curr_seed_button = seed_button
+		if curr_seed_button.plant_scene: # The button has a plant associated with it
+			curr_plant = curr_seed_button.plant_scene.instantiate()
+			curr_plant.hide()
+			curr_env.add_child(curr_plant, true)
+	else:
+		print("Plant is locked!")
 
 # Handle when we have released a seed button. We may be dropping it into:
 #   * The seeds menu
 #   * An invalid position
 #   * The environment
-func _on_seed_button_released(_seed_button):
-	seed_button_pressed = false
-	curr_seed_button = null
-	if not curr_plant.visible: # The plant cannot be placed
-		curr_plant.queue_free() # Get rid of it
-	else: # The plant can be placed
-		curr_plant.set_shape_interact(true) # Make it have collisions
-		GameManager.update_plant_in_environment(curr_env.env_id, curr_plant)
-	curr_plant = null
+func _on_seed_button_released(seed_button):
+	if seed_button.unlocked:
+		seed_button_pressed = false
+		curr_seed_button = null
+		if not curr_plant.visible: # The plant cannot be placed
+			curr_plant.queue_free() # Get rid of it
+		else: # The plant can be placed
+			curr_plant.set_shape_interact(true) # Make it have collisions
+			GameManager.update_plant_in_environment(curr_env.env_id, curr_plant)
+		curr_plant = null
 
 # Handle when the explore button is pressed (entering explore mode)
 func _on_explore_button_pressed():

@@ -10,9 +10,11 @@ class_name SeedButton
 	set(value):
 		%NameLabel.text = value
 		plant_name = value
-@onready var duration_seconds: float
-
-@onready var unlocked: bool = false # Have we unlocked this seed?
+var duration_seconds: float
+var unlocked: bool:
+	set(value):
+		%LockIcon.visible = !value
+		unlocked = value
 
 var do_set_position = false
 @onready var start_position = global_position
@@ -25,7 +27,7 @@ func _ready():
 		duration_seconds = plant.get_study_duration()
 		%DurationLabel.text = plant.get_readable_study_duration()
 		plant_name = plant.get_plant_name()
-		
+		unlocked = plant.get_unlocked()
 
 func _physics_process(_delta: float) -> void:
 	if do_set_position:
@@ -33,18 +35,23 @@ func _physics_process(_delta: float) -> void:
 		global_position = get_global_mouse_position() - pos_offset
 
 func _on_button_button_down() -> void:
-	%NameLabel.hide()
-	%DurationLabel.hide()
-	do_set_position = true
-	start_position = global_position
+	if unlocked:
+		%NameLabel.hide()
+		%DurationLabel.hide()
+		%LockIcon.hide()
+		do_set_position = true
+		start_position = global_position
 	EventBus.seed_button_pressed.emit(self)
 
 func _on_button_button_up() -> void:
 	%NameLabel.show()
 	%DurationLabel.show()
-	global_position = start_position
-	do_set_position = false
-	make_transparent(false)
+	if unlocked:
+		global_position = start_position
+		do_set_position = false
+		make_transparent(false)
+	else:
+		%LockIcon.show()
 	EventBus.seed_button_released.emit(self)
 
 func make_transparent(do_transparent: bool):

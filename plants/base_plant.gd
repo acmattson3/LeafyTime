@@ -3,7 +3,7 @@ extends StaticBody3D
 class_name BasePlant # The base class for all plants
 
 var is_dead: bool = false
-
+@export var unlocked: bool = false
 @export var plant_name: String = "Plant" # The plant's name
 
 # Study time is currently limited to 11 hours, 59 minutes, and 59.99 seconds (~12 hours)
@@ -44,6 +44,9 @@ func get_readable_study_duration():
 	if duration_string == "":
 		duration_string = "Instant"
 	return duration_string
+
+func get_unlocked():
+	return unlocked
 
 # Virtual function for all plants.
 # Returns the current plant's scene path.

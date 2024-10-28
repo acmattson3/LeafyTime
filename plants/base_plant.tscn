@@ -4,3 +4,4 @@
 
 [node name="BasePlant" type="StaticBody3D"]
 script = ExtResource("1_oeaa0")
+unlocked = null
