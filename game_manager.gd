@@ -66,9 +66,9 @@ func _process(_delta):
 func _save_game_to_file():
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	if file:
-		print("Saving data...")
 		file.store_var(_game_state, true)
 		file.close()
+		print("Saved game data.")
 	else:
 		print("Failed to save: ", FileAccess.get_open_error())
 		# Can add logic here to attempt and recover
@@ -79,12 +79,12 @@ func _load_game_from_file():
 	if file:
 		var new_game_state = file.get_var(true)
 		if new_game_state:
-			print("Loaded save data.")
 			_game_state = new_game_state
+			print("Loaded game data.")
 		else:
 			print("Failed to load game data!")
 	else:
-		print("Failed to save: ", FileAccess.get_open_error())
+		print("Failed to load: ", FileAccess.get_open_error())
 
 # Returns the dictionary of plants from an environment given its ID
 func get_plants_in_env(env_id):
@@ -93,6 +93,14 @@ func get_plants_in_env(env_id):
 	else:
 		_game_state.environments[env_id] = {"plants": {}}
 		return {}
+
+func get_unlocked_plants():
+	return _game_state.unlocked_plants
+
+func is_plant_unlocked(plant_name):
+	if plant_name in get_unlocked_plants():
+		return true
+	return false
 
 # Private function to merge new plant data into an environment's plant data
 func _merge_new_plant_data(env_id: int, new_data: Dictionary):
@@ -109,8 +117,11 @@ func update_plant_in_environment(env_id: int, plant_node: BasePlant):
 			"path": plant_node.get_plant_path(), 
 			"pos": plant_node.global_position, 
 			"rot": plant_node.rotation,
-			"is_dead": plant_node.is_dead,
-			"is_unlocked": plant_node.unlocked
+			"is_dead": plant_node.is_dead
 		}
 	}
 	_merge_new_plant_data(env_id, new_data)
+
+func add_unlocked_plant(plant_name: String):
+	if plant_name not in _game_state.unlocked_plants:
+		_game_state.unlocked_plants.append(plant_name)

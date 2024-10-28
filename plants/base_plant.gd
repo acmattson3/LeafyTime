@@ -22,6 +22,13 @@ var is_dead: bool = false
 
 var _study_duration: float = 0.0 # The total time in seconds to grow this plant
 
+func _ready() -> void:
+	EventBus.load_game.connect(_on_load_game)
+
+func _on_load_game():
+	if GameManager.is_plant_unlocked(plant_name):
+		unlocked = true
+
 # Calculate and set study_duration based on study_hours, study_minutes, and study_seconds
 func _set_study_duration():
 	var hours_to_seconds = float(study_hours) * 3600.0

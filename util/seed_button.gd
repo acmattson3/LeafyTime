@@ -23,12 +23,21 @@ var do_set_position = false
 func _ready():
 	if plant_icon:
 		button.icon = plant_icon
-	if plant_scene and not Engine.is_editor_hint():
+	if Engine.is_editor_hint():
+		return
+	if plant_scene:
 		var plant = plant_scene.instantiate()
 		duration_seconds = plant.get_study_duration()
 		%DurationLabel.text = plant.get_readable_study_duration()
 		plant_name = plant.get_plant_name()
-		unlocked = plant.get_unlocked()
+		unlocked = plant.get_unlocked() # Handle exported unlocked plants
+	EventBus.load_game.connect(_on_load_game)
+
+func _on_load_game():
+	if unlocked: # We already exported as unlocked; save that!
+		GameManager.add_unlocked_plant(plant_name)
+	if GameManager.is_plant_unlocked(plant_name): # Handle progressively unlocked plants
+		unlocked = true
 
 func _physics_process(_delta: float) -> void:
 	if do_set_position:
