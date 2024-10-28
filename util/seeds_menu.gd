@@ -31,6 +31,9 @@ func sort_seed_buttons(sort_type: SORT_TYPE = SORT_TYPE.NAME_ASCENDING):
 			sort_func = func(a: SeedButton, b: SeedButton): return int(b.unlocked) - int(a.unlocked)
 		SORT_TYPE.UNLOCKED_DESCENDING:
 			sort_func = func(a: SeedButton, b: SeedButton): return int(a.unlocked) - int(b.unlocked)
+		_:
+			print("Unimplemented sort type requested; unable to sort.")
+			return
 	
 	sorted_buttons.sort_custom(sort_func)
 	
