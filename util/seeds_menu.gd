@@ -28,9 +28,9 @@ func sort_seed_buttons(sort_type: SORT_TYPE = SORT_TYPE.NAME_ASCENDING):
 		SORT_TYPE.DURATION_DESCENDING:
 			sort_func = func(a: SeedButton, b: SeedButton): return a.duration_seconds > b.duration_seconds
 		SORT_TYPE.UNLOCKED_ASCENDING:
-			sort_func = func(a: SeedButton, b: SeedButton): return int(b.unlocked) - int(a.unlocked)
+			sort_func = func(a: SeedButton, b: SeedButton): return int(b.unlocked) - int(a.unlocked) < 0
 		SORT_TYPE.UNLOCKED_DESCENDING:
-			sort_func = func(a: SeedButton, b: SeedButton): return int(a.unlocked) - int(b.unlocked)
+			sort_func = func(a: SeedButton, b: SeedButton): return int(a.unlocked) - int(b.unlocked) <= 0
 		_:
 			print("Unimplemented sort type requested; unable to sort.")
 			return

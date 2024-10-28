@@ -6,12 +6,13 @@ class_name SeedButton
 @export var plant_scene: PackedScene # The plant associated with this button
 @export var plant_icon: CompressedTexture2D # The image icon for this button
 
-@onready var plant_name: String:
+# Information about our plant_scene
+@onready var plant_name: String = "Plant":
 	set(value):
 		%NameLabel.text = value
 		plant_name = value
-var duration_seconds: float
-var unlocked: bool:
+var duration_seconds: float = 0
+var unlocked: bool = false:
 	set(value):
 		%LockIcon.visible = !value
 		unlocked = value
@@ -38,7 +39,6 @@ func _on_button_button_down() -> void:
 	if unlocked:
 		%NameLabel.hide()
 		%DurationLabel.hide()
-		%LockIcon.hide()
 		do_set_position = true
 		start_position = global_position
 	EventBus.seed_button_pressed.emit(self)
@@ -50,8 +50,6 @@ func _on_button_button_up() -> void:
 		global_position = start_position
 		do_set_position = false
 		make_transparent(false)
-	else:
-		%LockIcon.show()
 	EventBus.seed_button_released.emit(self)
 
 func make_transparent(do_transparent: bool):
