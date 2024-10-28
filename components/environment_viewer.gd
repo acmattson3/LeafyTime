@@ -28,7 +28,7 @@ func _ready():
 	# Connect to EventBus signals
 	EventBus.seed_button_pressed.connect(_on_seed_button_pressed)
 	EventBus.seed_button_released.connect(_on_seed_button_released)
-	EventBus.enter_explore_mode.connect(_on_explore_button_pressed)
+	EventBus.enter_explore_mode.connect(_on_enter_explore_mode)
 	EventBus.exit_explore_mode.connect(_exit_explore_mode)
 	EventBus.load_game.connect(_on_load_game)
 
@@ -113,8 +113,12 @@ func _on_seed_button_released(seed_button):
 			GameManager.update_plant_in_environment(curr_env.env_id, curr_plant)
 		curr_plant = null
 
-# Handle when the explore button is pressed (entering explore mode)
+# Handle when the explore button is pressed (enter explore mode)
 func _on_explore_button_pressed():
+	EventBus.enter_explore_mode.emit()
+
+# Handle entering explore mode
+func _on_enter_explore_mode():
 	# Handle the transition into exploring
 	EventBus.exploring = true
 	$UI.hide()
