@@ -41,7 +41,7 @@ func _save_game_to_file():
 		#file.store_string(JSON.stringify(_game_state))
 		file.close()
 	else:
-		print("Failed to save: ", file.get_open_error())
+		print("Failed to save: ", FileAccess.get_open_error())
 		# Can add logic here to attempt and recover
 
 # Load the game state
@@ -55,7 +55,7 @@ func _load_game_from_file():
 		else:
 			print("Failed to load game data!")
 	else:
-		print("Failed to save: ", file.get_open_error())
+		print("Failed to save: ", FileAccess.get_open_error())
 
 func get_plants_in_env(env_id):
 	if _game_state.environments.has(env_id):
