@@ -31,9 +31,19 @@ func _ready():
 	EventBus.enter_explore_mode.connect(_on_enter_explore_mode)
 	EventBus.exit_explore_mode.connect(_exit_explore_mode)
 	EventBus.load_game.connect(_on_load_game)
+	EventBus.resume_study_after_exit.connect(_on_resume_study_after_exit)
+
+func get_plant_by_name(plant_name):
+	for child in curr_env.get_children():
+		if child is BasePlant and child.name == plant_name:
+			return child
+	return null
+
+func _on_resume_study_after_exit(plant_name):
+	StudyManager.set_active_plant(get_plant_by_name(plant_name))
 
 func _on_load_game():
-	var plants: Dictionary = GameManager.get_plants_in_env(curr_env.env_id)
+	var plants: Dictionary = GameManager.get_plants()
 	for plant_name in plants.keys():
 		var new_plant = load(plants[plant_name].path).instantiate()
 		new_plant.is_dead = plants[plant_name].is_dead
@@ -110,7 +120,7 @@ func _on_seed_button_released(seed_button):
 			curr_plant.queue_free() # Get rid of it
 		else: # The plant can be placed
 			curr_plant.set_shape_interact(true) # Make it have collisions
-			GameManager.update_plant_in_environment(curr_env.env_id, curr_plant)
+			GameManager.update_plant(curr_plant)
 		curr_plant = null
 
 # Handle when the explore button is pressed (enter explore mode)

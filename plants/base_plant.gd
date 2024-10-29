@@ -23,6 +23,8 @@ var is_dead: bool = false
 var _study_duration: float = 0.0 # The total time in seconds to grow this plant
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	EventBus.load_game.connect(_on_load_game)
 
 func _on_load_game():

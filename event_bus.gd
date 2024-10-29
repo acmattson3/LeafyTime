@@ -7,8 +7,14 @@ var exploring: bool = false # Are we currently exploring an environment?
 signal load_game() # Instruct everyone to load data from GameManager
 signal seed_button_pressed(seed_button)
 signal seed_button_released(seed_button)
-signal start_study_session()
-signal study_session_failed()
-signal study_session_completed()
 signal enter_explore_mode()
 signal exit_explore_mode()
+
+# Study signals
+signal start_study_session(plant: BasePlant)
+signal start_break()
+signal resume_study_session()
+# if completed, user studied without distraction/breaking too long.
+# if not completed, user got distracted/breaked too long.
+signal stop_study_session(completed: bool)
+signal resume_study_after_exit()
