@@ -54,8 +54,8 @@ func _physics_process(_delta):
 		ratio = 0.01 if ratio == 0.0 else ratio
 		active_plant.scale = Vector3(ratio,ratio,ratio)
 
-var save_elapsed = 0.0
-var save_interval = 1.0
+#var save_elapsed = 0.0
+#var save_interval = 1.0
 func _process(delta):
 	if state == StudyState.ACTIVE:
 		study_time_remaining -= delta
@@ -65,10 +65,17 @@ func _process(delta):
 		break_time_remaining -= delta
 		if break_time_remaining <= 0.0: # Out of break time!
 			EventBus.stop_study_session.emit(false)
-	save_elapsed += delta
-	if save_elapsed > save_interval and is_studying():
-		save_elapsed = 0.0
-		_save_study_progress()
+	#save_elapsed += delta
+	#if save_elapsed > save_interval and is_studying():
+		#save_elapsed = 0.0
+		#_save_study_progress()
+
+func _notification(what):
+	# Catch pressing X on the application window
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		if is_studying():
+			_save_study_progress()
+		await get_tree().physics_frame
 
 # Handler for starting a study session
 func _on_start_study_session(plant: BasePlant):
@@ -109,9 +116,10 @@ func _on_stop_study_session(completed: bool):
 		else: # Failed!
 			print("Study session incomplete.")
 			state = StudyState.IDLE
-			active_plant.is_dead = true
-			GameManager.update_plant(active_plant)
-			active_plant = null
+			if active_plant:
+				active_plant.is_dead = true
+				GameManager.update_plant(active_plant)
+				active_plant = null
 			_save_study_progress()
 
 # Save current progress to file through GameManager

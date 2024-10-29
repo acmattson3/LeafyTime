@@ -56,6 +56,7 @@ func _notification(what):
 	# Catch pressing X on the application window
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_save_game_to_file() # Save before we close!
+		await get_tree().physics_frame
 		get_tree().quit() # Do the default behavior too
 
 func _process(_delta):
@@ -79,6 +80,7 @@ func clear_save_file():
 
 # Save the game state
 func _save_game_to_file():
+	print(_game_state)
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	if file:
 		file.store_var(_game_state, true)
