@@ -47,8 +47,9 @@ const SAVE_FILE_PATH = "user://save_game.json"
 var done_emit_load := false # Have we finished emitting EventBus.load_game?
 
 func _ready():
-	clear_save_file()
+	#clear_save_file()
 	_load_game_from_file() # Load data on startup
+	EventBus.unlock_plant.connect(add_unlocked_plant)
 
 func _notification(what):
 	# Catch pressing X on the application window

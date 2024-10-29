@@ -123,13 +123,57 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="TimeRemainingLabel" type="Label" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Study Time Left:"
+
+[node name="TimeRemaining" type="Label" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "00:00:00"
+
+[node name="Spacer6" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="StopStudyButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Stop Study"
+
+[node name="Spacer3" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="ToggleStudyBreakButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start Break"
+
+[node name="Spacer5" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.01
+
 [node name="ExploreButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Explore!"
 
-[node name="Spacer3" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer4" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -176,4 +220,6 @@ shape = SubResource("WorldBoundaryShape3D_yilw3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_fhh5e")
 
+[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer/StopStudyButton" to="." method="_on_stop_study_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer/ToggleStudyBreakButton" to="." method="_on_toggle_study_break_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/PanelContainer/HBoxContainer/VBoxContainer/ExploreButton" to="." method="_on_explore_button_pressed"]

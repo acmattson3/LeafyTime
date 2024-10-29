@@ -31,7 +31,40 @@ func _ready():
 	EventBus.enter_explore_mode.connect(_on_enter_explore_mode)
 	EventBus.exit_explore_mode.connect(_exit_explore_mode)
 	EventBus.load_game.connect(_on_load_game)
+	
 	EventBus.resume_study_after_exit.connect(_on_resume_study_after_exit)
+	EventBus.start_study_session.connect(_on_start_study_session)
+	EventBus.start_break.connect(_on_start_break)
+	EventBus.resume_study_session.connect(_on_resume_study_session)
+	EventBus.stop_study_session.connect(_on_stop_study_session)
+
+func _on_start_study_session(_plant: BasePlant):
+	%ToggleStudyBreakButton.text = "Start Break"
+	%ToggleStudyBreakButton.show()
+	%StopStudyButton.show()
+	%ExploreButton.disabled = true
+	%TimeRemainingLabel.show()
+	%TimeRemaining.show()
+	%TimeRemainingLabel.text = "Study Time Left:"
+
+func _on_start_break():
+	%ToggleStudyBreakButton.disabled = false
+	%StopStudyButton.disabled = false
+	%ExploreButton.disabled = false
+	%TimeRemainingLabel.text = "Break Time Left:"
+
+func _on_resume_study_session():
+	%ToggleStudyBreakButton.disabled = false
+	%StopStudyButton.disabled = false
+	%ExploreButton.disabled = true
+	%TimeRemainingLabel.text = "Study Time Left:"
+
+func _on_stop_study_session(_completed):
+	%ToggleStudyBreakButton.hide()
+	%StopStudyButton.hide()
+	%ExploreButton.disabled = false
+	%TimeRemainingLabel.hide()
+	%TimeRemaining.hide()
 
 func get_plant_by_name(plant_name):
 	for child in curr_env.get_children():
@@ -51,6 +84,7 @@ func _on_load_game():
 		curr_env.add_child(new_plant, true)
 		new_plant.global_position = plants[plant_name].pos
 		new_plant.rotation = plants[plant_name].rot
+		new_plant.set_shape_interact(true)
 	%LoadingLabel.hide()
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +94,10 @@ func _physics_process(delta: float) -> void:
 		return # We haven't loaded save data yet!
 	if EventBus.exploring:
 		return # The viewer should do nothing if we are exploring an environment.
-
+	
+	if StudyManager.is_studying():
+		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
+	
 	# Handle click position
 	var result = project_mouse_position()
 	if Input.is_action_pressed("left_click"):
@@ -98,27 +135,38 @@ func result_is_valid(result):
 
 # Handle when we have clicked a seed button
 func _on_seed_button_pressed(seed_button):
+	if StudyManager.is_studying():
+		return # We are studying; don't mess with buttons!
+	
+	curr_seed_button = seed_button
 	if seed_button.unlocked:
 		seed_button_pressed = true
-		curr_seed_button = seed_button
 		if curr_seed_button.plant_scene: # The button has a plant associated with it
 			curr_plant = curr_seed_button.plant_scene.instantiate()
 			curr_plant.hide()
 			curr_env.add_child(curr_plant, true)
 	else:
 		print("Plant is locked!")
+		if curr_seed_button.plant_scene:
+			# Instantiate a plant but never put it in the world!
+			var locked_plant_scene = curr_seed_button.plant_scene.instantiate()
+			EventBus.start_study_session.emit(locked_plant_scene)
 
 # Handle when we have released a seed button. We may be dropping it into:
 #   * The seeds menu
 #   * An invalid position
 #   * The environment
 func _on_seed_button_released(seed_button):
+	if StudyManager.is_studying():
+		return # We are studying; don't mess with buttons!
+	
 	if seed_button.unlocked:
 		seed_button_pressed = false
 		curr_seed_button = null
 		if not curr_plant.visible: # The plant cannot be placed
 			curr_plant.queue_free() # Get rid of it
 		else: # The plant can be placed
+			EventBus.start_study_session.emit(curr_plant)
 			curr_plant.set_shape_interact(true) # Make it have collisions
 			GameManager.update_plant(curr_plant)
 		curr_plant = null
@@ -179,3 +227,16 @@ func project_mouse_position():
 	if result:
 		return result
 	return null
+
+# Users can press to stop the current study session
+func _on_stop_study_button_pressed() -> void:
+	EventBus.stop_study_session.emit(false)
+
+# Toggle between studying and being on a break
+func _on_toggle_study_break_button_pressed() -> void:
+	if StudyManager.is_on_break():
+		EventBus.resume_study_session.emit()
+		%ToggleStudyBreakButton.text = "Start Break"
+	else:
+		EventBus.start_break.emit()
+		%ToggleStudyBreakButton.text = "Resume Studying"

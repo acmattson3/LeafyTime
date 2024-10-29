@@ -2,7 +2,10 @@
 extends StaticBody3D
 class_name BasePlant # The base class for all plants
 
-var is_dead: bool = false
+var is_dead: bool = false:
+	set(value):
+		_on_set_is_dead(value)
+		is_dead = value
 @export var unlocked: bool = false
 @export var plant_name: String = "Plant" # The plant's name
 
@@ -31,6 +34,9 @@ func _on_load_game():
 	if GameManager.is_plant_unlocked(plant_name):
 		unlocked = true
 
+func _on_set_is_dead(_value):
+	pass
+
 # Calculate and set study_duration based on study_hours, study_minutes, and study_seconds
 func _set_study_duration():
 	var hours_to_seconds = float(study_hours) * 3600.0
@@ -48,7 +54,7 @@ func get_readable_study_duration():
 	if study_minutes > 0:
 		duration_string += str(study_minutes) + "m "
 	if study_seconds > 0.0:
-		duration_string += str(round(study_seconds)) + "s"
+		duration_string += str(round(study_seconds)) + "s "
 	
 	if duration_string == "":
 		duration_string = "Instant"

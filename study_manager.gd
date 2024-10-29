@@ -52,7 +52,7 @@ func _process(delta):
 			EventBus.stop_study_session.emit(true)
 	elif state == StudyState.ON_BREAK:
 		break_time_remaining -= delta
-		if study_time_remaining <= 0.0: # Out of break time!
+		if break_time_remaining <= 0.0: # Out of break time!
 			EventBus.stop_study_session.emit(false)
 
 # Handler for starting a study session
@@ -66,7 +66,7 @@ func _on_start_study_session(plant: BasePlant):
 	
 	state = StudyState.ACTIVE
 	study_start_time = Time.get_unix_time_from_system()
-	print("Studying started for ", plant.get_plant_name(), " (", plant.get_readable_study_duration(), ")")
+	print(plant.get_readable_study_duration(), "study session started for ", plant.get_plant_name())
 
 # Handler for starting a break
 func _on_start_break():
@@ -85,12 +85,16 @@ func _on_stop_study_session(completed: bool):
 	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
 		print("Studying stopped!")
 		if completed: # Succeeded!
+			print("Study session completed!")
 			state = StudyState.IDLE
+			EventBus.unlock_plant.emit(active_plant.plant_name)
 			active_plant = null
 			_save_study_progress()
 		else: # Failed!
+			print("Study session incomplete.")
 			state = StudyState.IDLE
 			active_plant.is_dead = true
+			GameManager.update_plant(active_plant)
 			active_plant = null
 			_save_study_progress()
 
@@ -114,3 +118,31 @@ func get_time_remaining():
 		StudyState.ON_BREAK:
 			return break_time_remaining
 	return 0.0
+
+# Code by Felipe (https://forum.godotengine.org/t/how-to-convert-seconds-into-ddmm-ss-format/8174)
+func seconds_to_readable_time(time_in_sec):
+	if time_in_sec is float:
+		time_in_sec = int(time_in_sec)
+	var seconds = time_in_sec%60
+	var minutes = (time_in_sec/60)%60
+	var hours = (time_in_sec/60)/60
+	
+	#returns a string with the format "HH:MM:SS"
+	return "%02d:%02d:%02d" % [hours, minutes, seconds]
+
+func get_readable_time_remaining():
+	return seconds_to_readable_time(get_time_remaining())
+
+# Return true if a study session is in progress.
+func is_studying():
+	match state:
+		StudyState.ACTIVE, StudyState.ON_BREAK:
+			return true
+		_:
+			return false
+
+# Return true if the user is on a break
+func is_on_break():
+	if state == StudyState.ON_BREAK:
+		return true
+	return false

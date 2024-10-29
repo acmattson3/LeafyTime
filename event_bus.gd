@@ -9,6 +9,7 @@ signal seed_button_pressed(seed_button)
 signal seed_button_released(seed_button)
 signal enter_explore_mode()
 signal exit_explore_mode()
+signal unlock_plant(plant_name)
 
 # Study signals
 signal start_study_session(plant: BasePlant)
