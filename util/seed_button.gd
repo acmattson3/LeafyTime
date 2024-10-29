@@ -45,6 +45,8 @@ func _physics_process(_delta: float) -> void:
 		global_position = get_global_mouse_position() - pos_offset
 
 func _on_button_button_down() -> void:
+	if StudyManager.is_studying():
+		return
 	if unlocked:
 		%NameLabel.hide()
 		%DurationLabel.hide()
@@ -53,6 +55,8 @@ func _on_button_button_down() -> void:
 	EventBus.seed_button_pressed.emit(self)
 
 func _on_button_button_up() -> void:
+	if StudyManager.is_studying():
+		return
 	%NameLabel.show()
 	%DurationLabel.show()
 	if unlocked:

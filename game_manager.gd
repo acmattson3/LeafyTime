@@ -12,6 +12,7 @@ extends Node
 #           {"path": "res://path/to/plant", 
 #            "pos": Vector3(x,y,z), 
 #            "rot": Vector3(x,y,z),
+#            "scale": Vector3(x,y,z),
 #            "is_dead": boolean,
 #            "is_unlocked": boolean
 #           }, # End "PlantName0"
@@ -131,11 +132,14 @@ func _merge_new_plant_data(new_data: Dictionary):
 
 # Update the game state when a plant is added
 func update_plant(plant_node: BasePlant):
+	if not plant_node.is_inside_tree():
+		return # Don't update plants that aren't in the environment!
 	var new_data = {
 		plant_node.name: {
 			"path": plant_node.get_plant_path(), 
 			"pos": plant_node.global_position, 
 			"rot": plant_node.rotation,
+			"scale": plant_node.scale,
 			"is_dead": plant_node.is_dead
 		}
 	}

@@ -73,6 +73,14 @@ func get_plant_by_name(plant_name):
 	return null
 
 func _on_resume_study_after_exit(plant_name):
+	print("Resuming after exit!")
+	%ToggleStudyBreakButton.text = "Resume Studying"
+	%ToggleStudyBreakButton.show()
+	%StopStudyButton.show()
+	%ExploreButton.disabled = true
+	%TimeRemainingLabel.show()
+	%TimeRemaining.show()
+	%TimeRemainingLabel.text = "Break Time Left:"
 	StudyManager.set_active_plant(get_plant_by_name(plant_name))
 
 func _on_load_game():
@@ -84,6 +92,7 @@ func _on_load_game():
 		curr_env.add_child(new_plant, true)
 		new_plant.global_position = plants[plant_name].pos
 		new_plant.rotation = plants[plant_name].rot
+		new_plant.scale = plants[plant_name].scale
 		new_plant.set_shape_interact(true)
 	%LoadingLabel.hide()
 
@@ -97,6 +106,7 @@ func _physics_process(delta: float) -> void:
 	
 	if StudyManager.is_studying():
 		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
+		return
 	
 	# Handle click position
 	var result = project_mouse_position()

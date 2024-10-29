@@ -18,4 +18,4 @@ signal resume_study_session()
 # if completed, user studied without distraction/breaking too long.
 # if not completed, user got distracted/breaked too long.
 signal stop_study_session(completed: bool)
-signal resume_study_after_exit()
+signal resume_study_after_exit(plant_name)
