@@ -14,7 +14,6 @@ enum StudyState { IDLE, ACTIVE, ON_BREAK }
 var state := StudyState.IDLE
 
 @onready var active_plant: BasePlant = null # The plant we are growing by studying
-@onready var study_start_time: float = 0 # To check for exiting program
 @onready var starting_study_time: float = 0.0 # The study time we started with
 @onready var study_time_remaining: float = 0.0
 @onready var break_time_remaining: float = 0.0
@@ -34,24 +33,25 @@ func _on_load_game():
 		return # No study info to be concerned about!
 	print("User stopped during study session!")
 	EventBus.resume_study_after_exit.emit(study_data.plant_name)
+	await get_tree().physics_frame
 	state = StudyState.ON_BREAK # Leave off on a break
-	var time_diff = Time.get_unix_time_from_system() - study_data.start_time
+	var time_diff = Time.get_unix_time_from_system() - study_data.exit_time
 	if time_diff > study_data.break_duration: # Exited for longer than break time!
-		print("User was gone too long!")
+		print("User was gone ", time_diff - study_data.break_duration, " seconds too long!")
 		EventBus.stop_study_session.emit(false)
 	else: # Exited for less than break time
 		print("User lost ", int(time_diff), " seconds of break time!")
 		break_time_remaining = study_data.break_duration - time_diff
 		study_time_remaining = study_data.study_duration
-		study_start_time = study_data.start_time
+		starting_study_time = study_data.starting_study_time
 
 func set_active_plant(plant: BasePlant):
 	active_plant = plant
 
 func _physics_process(_delta):
-	if active_plant:
+	if active_plant and state == StudyState.ACTIVE:
 		var ratio = (starting_study_time-study_time_remaining)/starting_study_time
-		ratio = 0.01 if ratio == 0.0 else ratio
+		ratio = 0.01 if ratio <= 0.0 else ratio
 		active_plant.scale = Vector3(ratio,ratio,ratio)
 
 #var save_elapsed = 0.0
@@ -75,6 +75,7 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if is_studying():
 			_save_study_progress()
+			GameManager.update_plant(active_plant)
 		await get_tree().physics_frame
 
 # Handler for starting a study session
@@ -88,7 +89,6 @@ func _on_start_study_session(plant: BasePlant):
 	starting_study_time = study_time_remaining
 	
 	state = StudyState.ACTIVE
-	study_start_time = Time.get_unix_time_from_system()
 	print(plant.get_readable_study_duration(), "study session started for ", plant.get_plant_name())
 
 # Handler for starting a break
@@ -120,16 +120,20 @@ func _on_stop_study_session(completed: bool):
 				active_plant.is_dead = true
 				GameManager.update_plant(active_plant)
 				active_plant = null
+			else:
+				print("No active plant!")
 			_save_study_progress()
 
 # Save current progress to file through GameManager
 func _save_study_progress():
 	if active_plant:
+		var plant_name = active_plant.name
 		var progress = {
-			"plant_name": active_plant.get_plant_name(),
+			"plant_name": plant_name,
 			"break_duration": break_time_remaining,
 			"study_duration": study_time_remaining,
-			"start_time": study_start_time
+			"starting_study_time": starting_study_time,
+			"exit_time": Time.get_unix_time_from_system()
 		}
 		GameManager.update_study_data(progress)
 	else: # We must not be studying!

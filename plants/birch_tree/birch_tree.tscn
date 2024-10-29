@@ -45,7 +45,7 @@ height = 6.5
 [node name="BirchTree" instance=ExtResource("1_oxea0")]
 script = ExtResource("2_dmnvb")
 plant_name = "Birch Tree"
-study_hours = 1
+study_minutes = 1
 
 [node name="uploads_files_3120952_Tree" parent="." index="0" instance=ExtResource("3_8w8rp")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)

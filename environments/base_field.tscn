@@ -34,11 +34,11 @@ points = PackedVector3Array(-30, -2, -30, -30, 2, -30, 30, -2, -30, -30, -2, 30,
 [node name="BaseField" type="StaticBody3D"]
 script = ExtResource("1_x28tb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="BaseFieldMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 mesh = SubResource("BoxMesh_i1bpd")
 surface_material_override/0 = SubResource("StandardMaterial3D_t5yvq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="BaseFieldCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("ConvexPolygonShape3D_aqr1a")

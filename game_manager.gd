@@ -46,6 +46,7 @@ var _game_state := {
 const SAVE_FILE_PATH = "user://save_game.json"
 
 var done_emit_load := false # Have we finished emitting EventBus.load_game?
+var debugging = false
 
 func _ready():
 	#clear_save_file()
@@ -80,9 +81,10 @@ func clear_save_file():
 
 # Save the game state
 func _save_game_to_file():
-	print(_game_state)
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	if file:
+		if debugging:
+			print(_game_state)
 		file.store_var(_game_state, true)
 		file.close()
 		print("Saved game data.")
@@ -97,6 +99,8 @@ func _load_game_from_file():
 		var new_game_state = file.get_var(true)
 		if new_game_state:
 			_game_state = new_game_state
+			if debugging:
+				print(_game_state)
 			print("Loaded game data.")
 		else:
 			print("Failed to load game data!")
@@ -161,7 +165,15 @@ func clear_study_data():
 func get_study_data():
 	return _game_state.study_progress
 
+func get_studied_plant_name():
+	if _game_state.study_progress != {}:
+		return _game_state.study_progress.plant_name
+	return null
+
 # Add a plant by name to the unlocked plants list
 func add_unlocked_plant(plant_name: String):
 	if plant_name not in _game_state.unlocked_plants:
 		_game_state.unlocked_plants.append(plant_name)
+
+func get_current_env():
+	return 0

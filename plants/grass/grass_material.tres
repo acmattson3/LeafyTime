@@ -9,3 +9,4 @@ alpha_antialiasing_mode = 1
 alpha_antialiasing_edge = 0.3
 cull_mode = 2
 albedo_texture = ExtResource("1_g7uma")
+billboard_keep_scale = true

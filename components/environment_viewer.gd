@@ -66,13 +66,7 @@ func _on_stop_study_session(_completed):
 	%TimeRemainingLabel.hide()
 	%TimeRemaining.hide()
 
-func get_plant_by_name(plant_name):
-	for child in curr_env.get_children():
-		if child is BasePlant and child.name == plant_name:
-			return child
-	return null
-
-func _on_resume_study_after_exit(plant_name):
+func _on_resume_study_after_exit(_plant_name):
 	print("Resuming after exit!")
 	%ToggleStudyBreakButton.text = "Resume Studying"
 	%ToggleStudyBreakButton.show()
@@ -81,7 +75,6 @@ func _on_resume_study_after_exit(plant_name):
 	%TimeRemainingLabel.show()
 	%TimeRemaining.show()
 	%TimeRemainingLabel.text = "Break Time Left:"
-	StudyManager.set_active_plant(get_plant_by_name(plant_name))
 
 func _on_load_game():
 	var plants: Dictionary = GameManager.get_plants()
@@ -94,6 +87,10 @@ func _on_load_game():
 		new_plant.rotation = plants[plant_name].rot
 		new_plant.scale = plants[plant_name].scale
 		new_plant.set_shape_interact(true)
+		if new_plant.name == GameManager.get_studied_plant_name():
+			# We were studying this plant before we last exited!
+			StudyManager.set_active_plant(new_plant)
+			
 	%LoadingLabel.hide()
 
 func _physics_process(delta: float) -> void:
@@ -178,7 +175,7 @@ func _on_seed_button_released(seed_button):
 		else: # The plant can be placed
 			EventBus.start_study_session.emit(curr_plant)
 			curr_plant.set_shape_interact(true) # Make it have collisions
-			GameManager.update_plant(curr_plant)
+			#GameManager.update_plant(curr_plant)
 		curr_plant = null
 
 # Handle when the explore button is pressed (enter explore mode)
