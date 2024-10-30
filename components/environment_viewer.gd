@@ -39,6 +39,7 @@ func _ready():
 	EventBus.stop_study_session.connect(_on_stop_study_session)
 
 func _on_start_study_session(_plant: BasePlant):
+	selected_ring.hide()
 	%ToggleStudyBreakButton.text = "Start Break"
 	%ToggleStudyBreakButton.show()
 	%StopStudyButton.show()
@@ -48,18 +49,21 @@ func _on_start_study_session(_plant: BasePlant):
 	%TimeRemainingLabel.text = "Study Time Left:"
 
 func _on_start_break():
+	selected_ring.show()
 	%ToggleStudyBreakButton.disabled = false
 	%StopStudyButton.disabled = false
 	%ExploreButton.disabled = false
 	%TimeRemainingLabel.text = "Break Time Left:"
 
 func _on_resume_study_session():
+	selected_ring.hide()
 	%ToggleStudyBreakButton.disabled = false
 	%StopStudyButton.disabled = false
 	%ExploreButton.disabled = true
 	%TimeRemainingLabel.text = "Study Time Left:"
 
 func _on_stop_study_session(_completed):
+	selected_ring.show()
 	%ToggleStudyBreakButton.hide()
 	%StopStudyButton.hide()
 	%ExploreButton.disabled = false
@@ -68,6 +72,7 @@ func _on_stop_study_session(_completed):
 
 func _on_resume_study_after_exit(_plant_name):
 	print("Resuming after exit!")
+	selected_ring.hide()
 	%ToggleStudyBreakButton.text = "Resume Studying"
 	%ToggleStudyBreakButton.show()
 	%StopStudyButton.show()
@@ -101,16 +106,17 @@ func _physics_process(delta: float) -> void:
 	if EventBus.exploring:
 		return # The viewer should do nothing if we are exploring an environment.
 	
-	if StudyManager.is_studying():
-		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
-		return
-	
 	# Handle click position
 	var result = project_mouse_position()
 	if Input.is_action_pressed("left_click"):
 		if result_is_valid(result):
 			selected_ring.global_position = result.position
-			selected_ring.show()
+			if not StudyManager.is_studying():
+				selected_ring.show()
+	
+	if StudyManager.is_studying():
+		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
+		return
 	
 	# Handle plant drag/drop
 	if seed_button_pressed and curr_plant:
@@ -156,8 +162,14 @@ func _on_seed_button_pressed(seed_button):
 		print("Plant is locked!")
 		if curr_seed_button.plant_scene:
 			# Instantiate a plant but never put it in the world!
-			var locked_plant_scene = curr_seed_button.plant_scene.instantiate()
-			EventBus.start_study_session.emit(locked_plant_scene)
+			var temp = curr_seed_button.plant_scene.instantiate()
+			var confirm_message = "Are you sure you want to unlock "
+			confirm_message += temp.get_plant_name()
+			confirm_message += "? This will take "+temp.get_readable_study_duration()+"."
+			EventBus.show_confirm.emit(confirm_message)
+			if await EventBus.popup_user_input:
+				var locked_plant_scene = curr_seed_button.plant_scene.instantiate()
+				EventBus.start_study_session.emit(locked_plant_scene)
 
 # Handle when we have released a seed button. We may be dropping it into:
 #   * The seeds menu
@@ -173,9 +185,15 @@ func _on_seed_button_released(seed_button):
 		if not curr_plant.visible: # The plant cannot be placed
 			curr_plant.queue_free() # Get rid of it
 		else: # The plant can be placed
-			EventBus.start_study_session.emit(curr_plant)
-			curr_plant.set_shape_interact(true) # Make it have collisions
-			#GameManager.update_plant(curr_plant)
+			var confirm_message = "Are you sure you want to place your "
+			confirm_message += curr_plant.plant_name+" here? This cannot be undone, and "
+			confirm_message += "will take "+curr_plant.get_readable_study_duration()+"."
+			EventBus.show_confirm.emit(confirm_message)
+			if await EventBus.popup_user_input:
+				EventBus.start_study_session.emit(curr_plant)
+				curr_plant.set_shape_interact(true) # Make it have collisions
+			else:
+				curr_plant.queue_free()
 		curr_plant = null
 
 # Handle when the explore button is pressed (enter explore mode)
@@ -237,7 +255,15 @@ func project_mouse_position():
 
 # Users can press to stop the current study session
 func _on_stop_study_button_pressed() -> void:
-	EventBus.stop_study_session.emit(false)
+	var active_plant_name = StudyManager.get_active_plant().plant_name
+	var confirm_message = "Are you sure you want to cancel this study session? "
+	if GameManager.is_plant_unlocked(active_plant_name):
+		confirm_message += active_plant_name+" will die!"
+	else:
+		confirm_message += active_plant_name+" will not be unlocked!"
+	EventBus.show_confirm.emit(confirm_message)
+	if await EventBus.popup_user_input:
+		EventBus.stop_study_session.emit(false)
 
 # Toggle between studying and being on a break
 func _on_toggle_study_break_button_pressed() -> void:

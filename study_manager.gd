@@ -73,10 +73,7 @@ func _process(delta):
 		break_time_remaining -= delta
 		if break_time_remaining <= 0.0: # Out of break time!
 			EventBus.stop_study_session.emit(false)
-	#save_elapsed += delta
-	#if save_elapsed > save_interval and is_studying():
-		#save_elapsed = 0.0
-		#_save_study_progress()
+			EventBus.show_warning.emit("You ran out of break time, and your plant died!")
 
 func _notification(what):
 	# Catch pressing X on the application window
@@ -88,6 +85,8 @@ func _notification(what):
 
 # Handler for starting a study session
 func _on_start_study_session(plant: BasePlant):
+	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
+		return # We are already studying; don't do that!
 	active_plant = plant
 	
 	# Set up total study and break times
@@ -97,7 +96,7 @@ func _on_start_study_session(plant: BasePlant):
 	starting_study_time = study_time_remaining
 	
 	state = StudyState.ACTIVE
-	print(plant.get_readable_study_duration(), "study session started for ", plant.get_plant_name())
+	print(plant.get_readable_study_duration(), " study session started for ", plant.get_plant_name())
 
 # Handler for starting a break
 func _on_start_break():
@@ -118,7 +117,9 @@ func _on_stop_study_session(completed: bool):
 		if completed: # Succeeded!
 			print("Study session completed!")
 			state = StudyState.IDLE
+			active_plant.scale = Vector3.ONE
 			EventBus.unlock_plant.emit(active_plant.plant_name)
+			GameManager.update_plant(active_plant)
 			active_plant = null
 			_save_study_progress()
 		else: # Failed!
@@ -182,3 +183,6 @@ func is_on_break():
 	if state == StudyState.ON_BREAK:
 		return true
 	return false
+
+func get_active_plant():
+	return active_plant

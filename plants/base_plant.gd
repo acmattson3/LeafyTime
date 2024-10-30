@@ -50,11 +50,11 @@ func get_study_duration():
 func get_readable_study_duration():
 	var duration_string = ""
 	if study_hours > 0:
-		duration_string += str(study_hours) + "h "
+		duration_string += str(study_hours) + "h"
 	if study_minutes > 0:
-		duration_string += str(study_minutes) + "m "
+		duration_string += str(study_minutes) + "m"
 	if study_seconds > 0.0:
-		duration_string += str(round(study_seconds)) + "s "
+		duration_string += str(round(study_seconds)) + "s"
 	
 	if duration_string == "":
 		duration_string = "Instant"

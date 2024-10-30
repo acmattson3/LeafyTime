@@ -57,4 +57,16 @@ text = "Okay"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Cancel"
+
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OkayButton" to="." method="_on_okay_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

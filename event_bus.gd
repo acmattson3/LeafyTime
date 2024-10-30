@@ -21,6 +21,8 @@ signal stop_study_session(completed: bool)
 signal resume_study_after_exit(plant_name)
 
 # PopUp Signals
-signal show_error(message)
-signal show_warning(message)
-signal show_info(message)
+signal show_error(message: String)
+signal show_warning(message: String)
+signal show_info(message: String)
+signal show_confirm(message: String)
+signal popup_user_input(do_thing: bool)

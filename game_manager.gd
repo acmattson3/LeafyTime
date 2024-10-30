@@ -46,7 +46,7 @@ var _game_state := {
 const SAVE_FILE_PATH = "user://save_game.json"
 
 var done_emit_load := false # Have we finished emitting EventBus.load_game?
-var debugging = false
+const debugging = false
 
 func _ready():
 	#clear_save_file()
