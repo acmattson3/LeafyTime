@@ -38,9 +38,17 @@ func _on_load_game():
 	var time_diff = Time.get_unix_time_from_system() - study_data.exit_time
 	if time_diff > study_data.break_duration: # Exited for longer than break time!
 		print("User was gone ", time_diff - study_data.break_duration, " seconds too long!")
+		var warning_message = "You exited the game while studying, and "
+		warning_message += "went " + str(int(time_diff - study_data.break_duration)) + " over "
+		warning_message += "your total break time. You have failed your study session."
+		EventBus.show_warning.emit(warning_message)
 		EventBus.stop_study_session.emit(false)
 	else: # Exited for less than break time
 		print("User lost ", int(time_diff), " seconds of break time!")
+		var warning_message = "You exited the game while studying, and "
+		warning_message += "lost "+str(int(time_diff))+" seconds of break time! "
+		warning_message += "You are currently using break time."
+		EventBus.show_warning.emit(warning_message)
 		break_time_remaining = study_data.break_duration - time_diff
 		study_time_remaining = study_data.study_duration
 		starting_study_time = study_data.starting_study_time

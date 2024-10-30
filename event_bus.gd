@@ -19,3 +19,8 @@ signal resume_study_session()
 # if not completed, user got distracted/breaked too long.
 signal stop_study_session(completed: bool)
 signal resume_study_after_exit(plant_name)
+
+# PopUp Signals
+signal show_error(message)
+signal show_warning(message)
+signal show_info(message)
