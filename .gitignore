@@ -17,3 +17,7 @@ mono_crash.*.json
 # Helper programs and associated files
 get_files.sh
 aggregated_texts.txt
+
+# Game export ignores
+*export*
+*.zip
