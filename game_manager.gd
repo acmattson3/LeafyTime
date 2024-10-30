@@ -168,7 +168,7 @@ func get_study_data():
 func get_studied_plant_name():
 	if _game_state.study_progress != {}:
 		return _game_state.study_progress.plant_name
-	return null
+	return ""
 
 # Add a plant by name to the unlocked plants list
 func add_unlocked_plant(plant_name: String):

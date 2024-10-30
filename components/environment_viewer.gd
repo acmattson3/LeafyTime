@@ -255,7 +255,7 @@ func project_mouse_position():
 
 # Users can press to stop the current study session
 func _on_stop_study_button_pressed() -> void:
-	var active_plant_name = StudyManager.get_active_plant().plant_name
+	var active_plant_name = GameManager.get_studied_plant_name()
 	var confirm_message = "Are you sure you want to cancel this study session? "
 	if GameManager.is_plant_unlocked(active_plant_name):
 		confirm_message += active_plant_name+" will die!"
