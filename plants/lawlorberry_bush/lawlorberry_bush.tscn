@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://gbm24cfvkb5e"]
+
+[ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_8ykyb"]
+[ext_resource type="PackedScene" uid="uid://d0vsixlywob2m" path="res://plants/lawlorberry_bush/lawlorhead_10k.glb" id="2_3hsxf"]
+[ext_resource type="Script" path="res://plants/lawlorberry_bush/lawlorberry_bush.gd" id="2_vg4lx"]
+[ext_resource type="ArrayMesh" uid="uid://dy4pfkpk8sfl7" path="res://plants/lawlorberry_bush/lawlorberry_bush.obj" id="4_8tp0b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82jte"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.725491, 0.95392, 0.955816, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h5tt"]
+albedo_color = Color(0.237957, 0.31906, 1, 1)
+metallic_specular = 0.0
+clearcoat_enabled = true
+clearcoat = 0.18
+clearcoat_roughness = 0.96
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbt03"]
+radius = 1.16793
+height = 2.97655
+
+[node name="LawlorberryBush" instance=ExtResource("1_8ykyb")]
+script = ExtResource("2_vg4lx")
+plant_name = "Lawlorberry Bush"
+study_seconds = 13.0
+
+[node name="lawlorhead_10k2" parent="." index="0" instance=ExtResource("2_3hsxf")]
+transform = Transform3D(8.88505, -4.58867, 0, 4.58867, 8.88505, 0, 0, 0, 10, 0, 0.678143, 0)
+
+[node name="lawlorhead_10k" parent="lawlorhead_10k2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_82jte")
+
+[node name="LawlorberryBush" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1.02635, -0.52974, 0, 0.52974, 1.02635, 0, 0, 0, 1.155, 0.489567, -0.232985, 0.00135821)
+mesh = ExtResource("4_8tp0b")
+surface_material_override/0 = SubResource("StandardMaterial3D_2h5tt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(0.899192, -0.437555, 0, 0.437555, 0.899192, 0, 0, 0, 1, 0.155761, 0.802168, 0)
+shape = SubResource("CapsuleShape3D_hbt03")
+disabled = true
+
+[editable path="lawlorhead_10k2"]

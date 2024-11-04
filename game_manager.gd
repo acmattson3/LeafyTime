@@ -138,8 +138,10 @@ func _merge_new_plant_data(new_data: Dictionary):
 
 # Update the game state when a plant is added
 func update_plant(plant_node: BasePlant):
-	if not plant_node.is_inside_tree():
+	if plant_node and not plant_node.is_inside_tree():
 		return # Don't update plants that aren't in the environment!
+	elif not plant_node:
+		return
 	var new_data = {
 		plant_node.name: {
 			"path": plant_node.get_plant_path(), 

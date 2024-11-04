@@ -39,7 +39,7 @@ func _on_load_game():
 	if time_diff > study_data.break_duration: # Exited for longer than break time!
 		print("User was gone ", time_diff - study_data.break_duration, " seconds too long!")
 		var warning_message = "You exited the game while studying, and "
-		warning_message += "went " + str(int(time_diff - study_data.break_duration)) + " over "
+		warning_message += "went " + str(int(time_diff - study_data.break_duration)) + " seconds over "
 		warning_message += "your total break time. You have failed your study session."
 		EventBus.show_warning.emit(warning_message)
 		EventBus.stop_study_session.emit(false)
@@ -120,6 +120,7 @@ func _on_stop_study_session(completed: bool):
 			active_plant.scale = Vector3.ONE
 			EventBus.unlock_plant.emit(active_plant.plant_name)
 			GameManager.update_plant(active_plant)
+			EventBus.show_info.emit("You successfully got a "+active_plant.plant_name+"!")
 			active_plant = null
 			_save_study_progress()
 		else: # Failed!
@@ -135,8 +136,10 @@ func _on_stop_study_session(completed: bool):
 
 # Save current progress to file through GameManager
 func _save_study_progress():
-	if active_plant:
-		var plant_name = active_plant.name
+	if state != StudyState.IDLE:
+		var plant_name = ""
+		if active_plant:
+			plant_name = active_plant.name
 		var progress = {
 			"plant_name": plant_name,
 			"break_duration": break_time_remaining,
@@ -146,6 +149,7 @@ func _save_study_progress():
 		}
 		GameManager.update_study_data(progress)
 	else: # We must not be studying!
+		print("Clearing study data!")
 		GameManager.clear_study_data()
 
 func get_time_remaining():

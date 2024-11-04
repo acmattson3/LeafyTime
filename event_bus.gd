@@ -10,6 +10,7 @@ signal seed_button_released(seed_button)
 signal enter_explore_mode()
 signal exit_explore_mode()
 signal unlock_plant(plant_name)
+signal toggle_env_input(is_on: bool)
 
 # Study signals
 signal start_study_session(plant: BasePlant)

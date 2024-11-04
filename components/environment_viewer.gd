@@ -149,6 +149,9 @@ func result_is_valid(result):
 # Handle when we have clicked a seed button
 func _on_seed_button_pressed(seed_button):
 	if StudyManager.is_studying():
+		var message = "You are currently studying. To select new plants, "
+		message += "you must finish studying or stop your session."
+		EventBus.show_info.emit(message)
 		return # We are studying; don't mess with buttons!
 	
 	curr_seed_button = seed_button
@@ -185,7 +188,7 @@ func _on_seed_button_released(seed_button):
 		if not curr_plant.visible: # The plant cannot be placed
 			curr_plant.queue_free() # Get rid of it
 		else: # The plant can be placed
-			var confirm_message = "Are you sure you want to place your "
+			var confirm_message = "Are you sure you want to place a "
 			confirm_message += curr_plant.plant_name+" here? This cannot be undone, and "
 			confirm_message += "will take "+curr_plant.get_readable_study_duration()+"."
 			EventBus.show_confirm.emit(confirm_message)

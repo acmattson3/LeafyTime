@@ -88,7 +88,7 @@ func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return # Don't run this in the editor!
 	if can_input:
-		if Input.is_action_pressed("right_click") and can_zoom:
+		if can_zoom:
 			if Input.is_action_just_pressed("zoom_in"):
 				camera_distance = lerp(camera_distance, camera_distance-0.5*zoom_sens, delta*h_accel)
 			elif Input.is_action_just_pressed("zoom_out"):
