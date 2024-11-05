@@ -54,6 +54,7 @@ func _on_start_break():
 	%StopStudyButton.disabled = false
 	%ExploreButton.disabled = false
 	%TimeRemainingLabel.text = "Break Time Left:"
+	%ToggleStudyBreakButton.text = "Resume Studying"
 
 func _on_resume_study_session():
 	selected_ring.hide()

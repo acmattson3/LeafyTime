@@ -18,6 +18,15 @@ var state := StudyState.IDLE
 @onready var study_time_remaining: float = 0.0
 @onready var break_time_remaining: float = 0.0
 
+var whitelist: bool = false # False == blacklist, True == whitelist
+# Expects a string of format "app1,app2,app3" such that app1,
+# app2, and app3 are banned/allowed terms in window names.
+var focus_limit_string: String = "":
+	set(value):
+		_focus_greylist = value.split(",")
+		focus_limit_string = value
+var _focus_greylist: Array = []
+
 var study_to_break_ratio: float = 6.0 # minutes of study time for every minute of break time
 
 func _ready():
@@ -62,18 +71,49 @@ func _physics_process(_delta):
 		ratio = 0.01 if ratio <= 0.0 else ratio
 		active_plant.scale = Vector3(ratio,ratio,ratio)
 
-#var save_elapsed = 0.0
-#var save_interval = 1.0
+var check_focus_elapsed: float  = 25.0
+var check_focus_interval: float = 30.0 # Check focus every 30 seconds
 func _process(delta):
 	if state == StudyState.ACTIVE:
 		study_time_remaining -= delta
+		check_focus_elapsed += delta
+		
 		if study_time_remaining <= 0.0: # Done studying!
 			EventBus.stop_study_session.emit(true)
+		if check_focus_elapsed >= check_focus_interval:
+			if check_distracted():
+				print("User is distracted!")
+				var warning_message = "According to your list of apps, "
+				warning_message += "you are distracted! You have been "
+				warning_message += "kicked into break time."
+				EventBus.show_warning.emit(warning_message)
+				EventBus.start_break.emit()
+			check_focus_elapsed = 0.0
+		
 	elif state == StudyState.ON_BREAK:
 		break_time_remaining -= delta
 		if break_time_remaining <= 0.0: # Out of break time!
 			EventBus.stop_study_session.emit(false)
 			EventBus.show_warning.emit("You ran out of break time, and your plant died!")
+
+func check_distracted():
+	var tracker := WindowTracker.new()
+	var is_distracted := true # Assume distracted (for whitelist)
+	if whitelist: # Every window must include something from greylist
+		for window in tracker.get_open_windows():
+			var window_passed: bool = false
+			for item in _focus_greylist:
+				if item in window:
+					window_passed = true
+					break # We're good!
+			if not window_passed:
+				return true # We're distracted!
+	else: # All windows must not include anything from greylist
+		for window in tracker.get_open_windows():
+			for item in _focus_greylist:
+				if item in window:
+					return true # We're distracted!
+	return false
 
 func _notification(what):
 	# Catch pressing X on the application window
