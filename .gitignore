@@ -21,3 +21,8 @@ aggregated_texts.txt
 # Game export ignores
 *export*
 *.zip
+
+# GDExtension ignores
+*.os
+godot-cpp/
+.scons*
