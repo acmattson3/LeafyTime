@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 EventBus="*res://event_bus.gd"
 GameManager="*res://game_manager.gd"
 StudyManager="*res://study_manager.gd"
+SoundManager="*res://sound_manager.gd"
 
 [debug]
 

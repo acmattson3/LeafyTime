@@ -60,6 +60,7 @@ func _on_load_game():
 	state = StudyState.ON_BREAK # Leave off on a break
 	var time_diff = Time.get_unix_time_from_system() - study_data.exit_time
 	if time_diff > study_data.break_duration: # Exited for longer than break time!
+		SoundManager.play_sad()
 		print("User was gone ", time_diff - study_data.break_duration, " seconds too long!")
 		var warning_message = "You exited the game while studying, and "
 		warning_message += "went " + str(int(time_diff - study_data.break_duration)) + " seconds over "
@@ -68,6 +69,7 @@ func _on_load_game():
 		EventBus.stop_study_session.emit(false)
 	else: # Exited for less than break time
 		print("User lost ", int(time_diff), " seconds of break time!")
+		SoundManager.play_sad()
 		var warning_message = "You exited the game while studying, and "
 		warning_message += "lost "+str(int(time_diff))+" seconds of break time! "
 		warning_message += "You are currently using break time."
@@ -100,6 +102,7 @@ func _process(delta):
 				var warning_message = "According to your list of apps, "
 				warning_message += "you are distracted! You have been "
 				warning_message += "kicked into break time."
+				SoundManager.play_sad()
 				EventBus.show_warning.emit(warning_message)
 				EventBus.start_break.emit()
 			check_focus_elapsed = 0.0
@@ -141,6 +144,7 @@ func _notification(what):
 func _on_start_study_session(plant: BasePlant):
 	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
 		return # We are already studying; don't do that!
+	SoundManager.play_happy()
 	active_plant = plant
 	
 	# Set up total study and break times
@@ -155,12 +159,14 @@ func _on_start_study_session(plant: BasePlant):
 # Handler for starting a break
 func _on_start_break():
 	if state == StudyState.ACTIVE:
+		SoundManager.play_neutral()
 		state = StudyState.ON_BREAK
 		print("Studying paused.")
 
 # Handler for resuming a paused study session
 func _on_resume_study_session():
 	if state == StudyState.ON_BREAK:
+		SoundManager.play_neutral()
 		state = StudyState.ACTIVE
 		print("Studying resumed!")
 
@@ -169,6 +175,7 @@ func _on_stop_study_session(completed: bool):
 	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
 		print("Studying stopped!")
 		if completed: # Succeeded!
+			SoundManager.play_very_happy()
 			print("Study session completed!")
 			state = StudyState.IDLE
 			active_plant.scale = Vector3.ONE
@@ -178,6 +185,7 @@ func _on_stop_study_session(completed: bool):
 			active_plant = null
 			_save_study_progress()
 		else: # Failed!
+			SoundManager.play_very_sad()
 			print("Study session incomplete.")
 			state = StudyState.IDLE
 			if active_plant:

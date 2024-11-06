@@ -184,6 +184,7 @@ func _on_seed_button_pressed(seed_button):
 		print("Plant is locked!")
 		if curr_seed_button.plant_scene:
 			# Instantiate a plant but never put it in the world!
+			SoundManager.play_neutral()
 			var temp = curr_seed_button.plant_scene.instantiate()
 			var confirm_message = "Are you sure you want to unlock "
 			confirm_message += temp.get_plant_name()
@@ -220,6 +221,7 @@ func _on_seed_button_released(seed_button):
 
 # Handle when the explore button is pressed (enter explore mode)
 func _on_explore_button_pressed():
+	SoundManager.play_happy()
 	EventBus.enter_explore_mode.emit()
 
 # Handle entering explore mode

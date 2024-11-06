@@ -28,6 +28,7 @@ func _on_show_error(message):
 	show_message(message, MessageType.ERROR)
 
 func _on_show_warning(message):
+	
 	show_message(message, MessageType.WARNING)
 
 func _on_show_info(message):
