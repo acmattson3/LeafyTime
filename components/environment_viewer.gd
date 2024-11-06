@@ -37,6 +37,11 @@ func _ready():
 	EventBus.start_break.connect(_on_start_break)
 	EventBus.resume_study_session.connect(_on_resume_study_session)
 	EventBus.stop_study_session.connect(_on_stop_study_session)
+	EventBus.toggle_env_input.connect(_on_toggle_env_input)
+
+var do_env_input: bool = true
+func _on_toggle_env_input(is_on):
+	do_env_input = is_on
 
 func _on_start_study_session(_plant: BasePlant):
 	selected_ring.hide()
@@ -83,6 +88,15 @@ func _on_resume_study_after_exit(_plant_name):
 	%TimeRemainingLabel.text = "Break Time Left:"
 
 func _on_load_game():
+	%WhitelistCheckBox.button_pressed = GameManager.get_do_whitelist()
+	var words: Array = GameManager.get_greylist()
+	var idx: int = 0
+	for word in words:
+		%WhitelistTextEdit.text += word
+		idx += 1
+		if idx != len(words):
+			%WhitelistTextEdit.text += ","
+	
 	var plants: Dictionary = GameManager.get_plants()
 	for plant_name in plants.keys():
 		var new_plant = load(plants[plant_name].path).instantiate()
@@ -107,6 +121,13 @@ func _physics_process(delta: float) -> void:
 	if EventBus.exploring:
 		return # The viewer should do nothing if we are exploring an environment.
 	
+	if StudyManager.is_studying():
+		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
+		return
+	
+	if not do_env_input:
+		return
+	
 	# Handle click position
 	var result = project_mouse_position()
 	if Input.is_action_pressed("left_click"):
@@ -114,10 +135,6 @@ func _physics_process(delta: float) -> void:
 			selected_ring.global_position = result.position
 			if not StudyManager.is_studying():
 				selected_ring.show()
-	
-	if StudyManager.is_studying():
-		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
-		return
 	
 	# Handle plant drag/drop
 	if seed_button_pressed and curr_plant:
@@ -277,3 +294,14 @@ func _on_toggle_study_break_button_pressed() -> void:
 	else:
 		EventBus.start_break.emit()
 		%ToggleStudyBreakButton.text = "Resume Studying"
+
+# Toggle settings window visibility
+func _on_settings_button_pressed() -> void:
+	EventBus.toggle_env_input.emit(%SettingsWindow.visible)
+	%SettingsWindow.visible = !%SettingsWindow.visible
+
+func _on_whitelist_text_edit_text_changed() -> void:
+	StudyManager.set_greylist(%WhitelistTextEdit.text.split(','))
+
+func _on_whitelist_check_box_toggled(toggled_on: bool) -> void:
+	StudyManager.whitelist = toggled_on

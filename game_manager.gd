@@ -41,7 +41,9 @@ var _game_state := {
 	"environments": {},
 	"unlocked_plants": [], # Requires that all plants have unique names
 	"current_environment": 0, # The last loaded environment
-	"study_progress": {}
+	"study_progress": {},
+	"greylist": [],
+	"do_whitelist": false
 }
 const SAVE_FILE_PATH = "user://save_game.json"
 
@@ -74,7 +76,9 @@ func clear_save_file():
 		"environments": {},
 		"unlocked_plants": [],
 		"current_environment": "",
-		"study_progress": {}
+		"study_progress": {},
+		"greylist": [],
+		"do_whitelist": false
 	}
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	file.store_var(_game_state, true)
@@ -179,3 +183,15 @@ func add_unlocked_plant(plant_name: String):
 
 func get_current_env():
 	return 0
+
+func get_greylist():
+	return _game_state.greylist
+
+func set_greylist(greylist: Array):
+	_game_state.greylist = greylist
+
+func get_do_whitelist():
+	return _game_state.do_whitelist
+
+func set_do_whitelist(do_whitelist: bool):
+	_game_state.do_whitelist = do_whitelist

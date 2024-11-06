@@ -18,14 +18,18 @@ var state := StudyState.IDLE
 @onready var study_time_remaining: float = 0.0
 @onready var break_time_remaining: float = 0.0
 
-var whitelist: bool = false # False == blacklist, True == whitelist
-# Expects a string of format "app1,app2,app3" such that app1,
-# app2, and app3 are banned/allowed terms in window names.
-var focus_limit_string: String = "":
+# Window tracking logic
+var whitelist: bool = false: # False == blacklist, True == whitelist
 	set(value):
-		_focus_greylist = value.split(",")
-		focus_limit_string = value
-var _focus_greylist: Array = []
+		GameManager.set_do_whitelist(value)
+		whitelist = value
+var _focus_greylist: Array = []: # The list of blocked/allowed keywords
+	set(value):
+		GameManager.set_greylist(value)
+		_focus_greylist = value
+# TODO: Add a settings menu for white/blacklist info!!!
+# Also let it have sensitivities, break-to-study ratio, 
+# pomodoro durations, etc
 
 var study_to_break_ratio: float = 6.0 # minutes of study time for every minute of break time
 
@@ -37,6 +41,9 @@ func _ready():
 	EventBus.load_game.connect(_on_load_game)
 
 func _on_load_game():
+	_focus_greylist = GameManager.get_greylist()
+	whitelist = GameManager.get_do_whitelist()
+	
 	var study_data = GameManager.get_study_data()
 	if study_data == {}:
 		return # No study info to be concerned about!
@@ -72,7 +79,7 @@ func _physics_process(_delta):
 		active_plant.scale = Vector3(ratio,ratio,ratio)
 
 var check_focus_elapsed: float  = 25.0
-var check_focus_interval: float = 30.0 # Check focus every 30 seconds
+var check_focus_interval: float = 5.0 # Check focus every 5 seconds
 func _process(delta):
 	if state == StudyState.ACTIVE:
 		study_time_remaining -= delta
@@ -96,9 +103,9 @@ func _process(delta):
 			EventBus.stop_study_session.emit(false)
 			EventBus.show_warning.emit("You ran out of break time, and your plant died!")
 
+# Check if a user violates the black/whitelist
 func check_distracted():
 	var tracker := WindowTracker.new()
-	var is_distracted := true # Assume distracted (for whitelist)
 	if whitelist: # Every window must include something from greylist
 		for window in tracker.get_open_windows():
 			var window_passed: bool = false
@@ -118,8 +125,8 @@ func check_distracted():
 func _notification(what):
 	# Catch pressing X on the application window
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_save_study_progress()
 		if is_studying():
-			_save_study_progress()
 			GameManager.update_plant(active_plant)
 		await get_tree().physics_frame
 
@@ -230,3 +237,8 @@ func is_on_break():
 
 func get_active_plant():
 	return active_plant
+
+func set_greylist(words: Array):
+	_focus_greylist = []
+	for word in words:
+		_focus_greylist.append(word)

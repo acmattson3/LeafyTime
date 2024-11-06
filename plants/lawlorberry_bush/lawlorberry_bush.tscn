@@ -23,7 +23,7 @@ height = 2.97655
 [node name="LawlorberryBush" instance=ExtResource("1_8ykyb")]
 script = ExtResource("2_vg4lx")
 plant_name = "Lawlorberry Bush"
-study_seconds = 13.0
+study_minutes = 1
 
 [node name="lawlorhead_10k2" parent="." index="0" instance=ExtResource("2_3hsxf")]
 transform = Transform3D(8.88505, -4.58867, 0, 4.58867, 8.88505, 0, 0, 0, 10, 0, 0.678143, 0)
