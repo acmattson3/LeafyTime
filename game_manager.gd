@@ -43,7 +43,8 @@ var _game_state := {
 	"current_environment": 0, # The last loaded environment
 	"study_progress": {},
 	"greylist": [],
-	"do_whitelist": false
+	"do_whitelist": false,
+	"study_break_ratio": 6.0
 }
 const SAVE_FILE_PATH = "user://save_game.json"
 
@@ -78,7 +79,8 @@ func clear_save_file():
 		"current_environment": "",
 		"study_progress": {},
 		"greylist": [],
-		"do_whitelist": false
+		"do_whitelist": false,
+		"study_break_ratio": 6.0
 	}
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	file.store_var(_game_state, true)
@@ -195,3 +197,9 @@ func get_do_whitelist():
 
 func set_do_whitelist(do_whitelist: bool):
 	_game_state.do_whitelist = do_whitelist
+
+func set_study_break_ratio(value: float):
+	_game_state.study_break_ratio = value
+
+func get_study_break_ratio():
+	return _game_state.study_break_ratio

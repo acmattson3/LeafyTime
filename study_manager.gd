@@ -31,7 +31,13 @@ var _focus_greylist: Array = []: # The list of blocked/allowed keywords
 # Also let it have sensitivities, break-to-study ratio, 
 # pomodoro durations, etc
 
-var study_to_break_ratio: float = 6.0 # minutes of study time for every minute of break time
+var _study_to_break_ratio: float = 6.0: # minutes of study time for every minute of break time
+	set(value):
+		GameManager.set_study_break_ratio(value)
+		_study_to_break_ratio = value
+
+func set_study_break_ratio(new_ratio: float):
+	_study_to_break_ratio = new_ratio if new_ratio>0 else 6.0
 
 func _ready():
 	EventBus.start_study_session.connect(_on_start_study_session)
@@ -43,6 +49,7 @@ func _ready():
 func _on_load_game():
 	_focus_greylist = GameManager.get_greylist()
 	whitelist = GameManager.get_do_whitelist()
+	_study_to_break_ratio = GameManager.get_study_break_ratio()
 	
 	var study_data = GameManager.get_study_data()
 	if study_data == {}:
@@ -138,7 +145,7 @@ func _on_start_study_session(plant: BasePlant):
 	
 	# Set up total study and break times
 	var total_plant_time = plant.get_study_duration()
-	break_time_remaining = total_plant_time / study_to_break_ratio
+	break_time_remaining = total_plant_time / _study_to_break_ratio
 	study_time_remaining = total_plant_time - break_time_remaining
 	starting_study_time = study_time_remaining
 	

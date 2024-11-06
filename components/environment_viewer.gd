@@ -88,6 +88,7 @@ func _on_resume_study_after_exit(_plant_name):
 	%TimeRemainingLabel.text = "Break Time Left:"
 
 func _on_load_game():
+	%TickButton.value = GameManager.get_study_break_ratio()
 	%WhitelistCheckBox.button_pressed = GameManager.get_do_whitelist()
 	var words: Array = GameManager.get_greylist()
 	var idx: int = 0
@@ -305,3 +306,6 @@ func _on_whitelist_text_edit_text_changed() -> void:
 
 func _on_whitelist_check_box_toggled(toggled_on: bool) -> void:
 	StudyManager.whitelist = toggled_on
+
+func _on_tick_button_value_changed(value: float) -> void:
+	StudyManager.set_study_break_ratio(value)
