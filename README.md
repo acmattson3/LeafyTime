@@ -34,9 +34,10 @@ If your platform isn't supported and you would like to make it work, or if you w
      cd cpp_src
      git clone https://github.com/godotengine/godot-cpp
      ```
-   - Navigate into the `godot-cpp` directory, and compile it with scons:
+   - Navigate into the `godot-cpp` directory, checkout the relevant branch version, and compile it with scons:
      ```sh
      cd godot-cpp
+     git checkout 4.3
      scons platform=<your platform>
      ```
    - Navigate back into the `cpp_src` directory and compile the source code with scons to build the extensions:
