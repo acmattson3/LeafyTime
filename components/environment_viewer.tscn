@@ -237,6 +237,7 @@ offset_bottom = 156.0
 
 [node name="SettingsWindow" type="PanelContainer" parent="UI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
