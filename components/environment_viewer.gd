@@ -208,6 +208,7 @@ func _on_seed_button_released(seed_button):
 		if not curr_plant.visible: # The plant cannot be placed
 			curr_plant.queue_free() # Get rid of it
 		else: # The plant can be placed
+			SoundManager.play_neutral()
 			var confirm_message = "Are you sure you want to place a "
 			confirm_message += curr_plant.plant_name+" here? This cannot be undone, and "
 			confirm_message += "will take "+curr_plant.get_readable_study_duration()+"."
@@ -280,7 +281,12 @@ func project_mouse_position():
 # Users can press to stop the current study session
 func _on_stop_study_button_pressed() -> void:
 	var active_plant_name = GameManager.get_studied_plant_name()
+	if active_plant_name == "":
+		var new_plant = StudyManager.get_active_plant()
+		if new_plant:
+			active_plant_name = new_plant.plant_name
 	var confirm_message = "Are you sure you want to cancel this study session? "
+	SoundManager.play_neutral()
 	if GameManager.is_plant_unlocked(active_plant_name):
 		confirm_message += active_plant_name+" will die!"
 	else:
@@ -292,9 +298,11 @@ func _on_stop_study_button_pressed() -> void:
 # Toggle between studying and being on a break
 func _on_toggle_study_break_button_pressed() -> void:
 	if StudyManager.is_on_break():
+		SoundManager.play_neutral()
 		EventBus.resume_study_session.emit()
 		%ToggleStudyBreakButton.text = "Start Break"
 	else:
+		SoundManager.play_neutral()
 		EventBus.start_break.emit()
 		%ToggleStudyBreakButton.text = "Resume Studying"
 

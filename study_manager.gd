@@ -89,8 +89,10 @@ func _physics_process(_delta):
 
 var check_focus_elapsed: float  = 25.0
 var check_focus_interval: float = 5.0 # Check focus every 5 seconds
+var reminded: bool = false
 func _process(delta):
 	if state == StudyState.ACTIVE:
+		reminded = false
 		study_time_remaining -= delta
 		check_focus_elapsed += delta
 		
@@ -109,6 +111,10 @@ func _process(delta):
 		
 	elif state == StudyState.ON_BREAK:
 		break_time_remaining -= delta
+		if break_time_remaining < 30.0 and not reminded:
+			reminded = true
+			EventBus.show_warning.emit("You are almost out of break time!")
+			SoundManager.play_sad()
 		if break_time_remaining <= 0.0: # Out of break time!
 			EventBus.stop_study_session.emit(false)
 			EventBus.show_warning.emit("You ran out of break time, and your plant died!")
@@ -159,14 +165,12 @@ func _on_start_study_session(plant: BasePlant):
 # Handler for starting a break
 func _on_start_break():
 	if state == StudyState.ACTIVE:
-		SoundManager.play_neutral()
 		state = StudyState.ON_BREAK
 		print("Studying paused.")
 
 # Handler for resuming a paused study session
 func _on_resume_study_session():
 	if state == StudyState.ON_BREAK:
-		SoundManager.play_neutral()
 		state = StudyState.ACTIVE
 		print("Studying resumed!")
 
