@@ -109,28 +109,27 @@ custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Spacer2" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.02
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Spacer7" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer7" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.01
 
-[node name="TopBarContainer" type="HBoxContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="TopBarContainer" type="HBoxContainer" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SettingsButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer/TopBarContainer"]
+[node name="SettingsButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopBarContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -138,76 +137,76 @@ theme_override_constants/icon_max_width = 50
 icon = ExtResource("4_scwi0")
 icon_alignment = 1
 
-[node name="Spacer9" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer/TopBarContainer"]
+[node name="Spacer9" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopBarContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.01
 
-[node name="Spacer2" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TimeRemainingLabel" type="Label" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="TimeRemainingLabel" type="Label" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Study Time Left:"
 
-[node name="TimeRemaining" type="Label" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="TimeRemaining" type="Label" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "00:00:00"
 
-[node name="Spacer6" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer6" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.01
 
-[node name="StopStudyButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="StopStudyButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Stop Study"
 
-[node name="Spacer3" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer3" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.01
 
-[node name="ToggleStudyBreakButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="ToggleStudyBreakButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Start Break"
 
-[node name="Spacer5" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer5" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.01
 
-[node name="ExploreButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="ExploreButton" type="Button" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Explore!"
 
-[node name="Spacer4" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Spacer4" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.02
 
-[node name="Spacer3" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer"]
+[node name="Spacer3" type="Control" parent="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.02
@@ -371,10 +370,10 @@ shape = SubResource("WorldBoundaryShape3D_yilw3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_fhh5e")
 
-[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer/TopBarContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer/StopStudyButton" to="." method="_on_stop_study_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer/ToggleStudyBreakButton" to="." method="_on_toggle_study_break_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/HBoxContainer/VBoxContainer/ExploreButton" to="." method="_on_explore_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopBarContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer/StopStudyButton" to="." method="_on_stop_study_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ToggleStudyBreakButton" to="." method="_on_toggle_study_break_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/LeftPanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ExploreButton" to="." method="_on_explore_button_pressed"]
 [connection signal="value_changed" from="UI/SettingsWindow/HBoxContainer/VBoxContainer/HBoxContainer2/TickButton" to="." method="_on_tick_button_value_changed"]
 [connection signal="text_changed" from="UI/SettingsWindow/HBoxContainer/VBoxContainer/WhitelistTextEdit" to="." method="_on_whitelist_text_edit_text_changed"]
 [connection signal="toggled" from="UI/SettingsWindow/HBoxContainer/VBoxContainer/HBoxContainer/WhitelistCheckBox" to="." method="_on_whitelist_check_box_toggled"]
