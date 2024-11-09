@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwihfhava7efc"]
+[gd_scene load_steps=10 format=3 uid="uid://dwihfhava7efc"]
 
 [ext_resource type="PackedScene" uid="uid://d03ttnf36pyb8" path="res://util/seed_button.tscn" id="1_3vvey"]
 [ext_resource type="Script" path="res://util/seeds_menu.gd" id="1_wirmq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cn7sqaldo2iw6" path="res://plants/birch_tree/birch_tree_transparent.png" id="6_ogyos"]
 [ext_resource type="PackedScene" uid="uid://gbm24cfvkb5e" path="res://plants/lawlorberry_bush/lawlorberry_bush.tscn" id="7_8a63i"]
 [ext_resource type="Texture2D" uid="uid://ba33bv510nybt" path="res://plants/lawlorberry_bush/lawlorberry_bush.png" id="8_gcvu8"]
+[ext_resource type="PackedScene" uid="uid://bjeyaxab77se7" path="res://plants/peony/peony.tscn" id="9_3d2hf"]
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(160, 0)
@@ -78,6 +79,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("7_8a63i")
 plant_icon = ExtResource("8_gcvu8")
+
+[node name="SeedButton4" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+plant_scene = ExtResource("9_3d2hf")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -3,10 +3,10 @@ extends Node
 @onready var player: AudioStreamPlayer
 
 var very_happy: AudioStreamWAV = load("res://util/sounds/very_happy.wav")
-var happy: AudioStreamWAV = load("res://util/sounds/happy.wav")
-var neutral: AudioStreamWAV = load("res://util/sounds/neutral.wav")
-var sad: AudioStreamWAV = load("res://util/sounds/sad.wav")
-var very_sad: AudioStreamWAV = load("res://util/sounds/very_sad.wav")
+var happy:      AudioStreamWAV = load("res://util/sounds/happy.wav")
+var neutral:    AudioStreamWAV = load("res://util/sounds/neutral.wav")
+var sad:        AudioStreamWAV = load("res://util/sounds/sad.wav")
+var very_sad:   AudioStreamWAV = load("res://util/sounds/very_sad.wav")
 
 func _ready():
 	player = AudioStreamPlayer.new()

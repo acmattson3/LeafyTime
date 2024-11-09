@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bq8v7ud0kewp2"]
+
+[ext_resource type="Texture2D" uid="uid://clsiy648dafeb" path="res://plants/peony/peony_leaf.png" id="1_6351v"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.752252, 0.69103, 0.47738, 1)
+albedo_texture = ExtResource("1_6351v")

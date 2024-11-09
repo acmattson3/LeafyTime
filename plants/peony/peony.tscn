@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjeyaxab77se7"]
+
+[ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_nf3vs"]
+[ext_resource type="Script" path="res://plants/peony/peony.gd" id="2_8qt1p"]
+[ext_resource type="PackedScene" uid="uid://docwajnvplsxd" path="res://plants/peony/peony.glb" id="2_omu4r"]
+[ext_resource type="Material" uid="uid://bq8v7ud0kewp2" path="res://plants/peony/peony_leaf_mat.tres" id="3_rhh3d"]
+
+[node name="Peony" instance=ExtResource("1_nf3vs")]
+script = ExtResource("2_8qt1p")
+unlocked = true
+plant_name = "Peony Plant"
+study_hours = 3
+
+[node name="peony" parent="." index="0" instance=ExtResource("2_omu4r")]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
+
+[node name="Icosphere" parent="peony" index="0"]
+surface_material_override/0 = ExtResource("3_rhh3d")
+
+[editable path="peony"]
