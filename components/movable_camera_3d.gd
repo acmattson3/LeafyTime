@@ -58,25 +58,32 @@ var can_input: bool = true # Can the camera be moved?
 @export var lock_horiz: bool = false # Lock horizontal rotation (vertical only)
 @export var can_zoom: bool = true # Can we zoom?
 
-func toggle_inputs(in_bool = null):
-	if in_bool == null:
-		can_input = !can_input
-	else:
-		can_input = in_bool
+@export var input_getter: Control = null
 
 func _input(event):
-	if Engine.is_editor_hint():
-		return # Don't run this in the editor!
+	if not input_getter:
+		_gui_input(event)
+
+func _gui_input(event):
 	if can_input and event is InputEventMouseMotion:
 		if Input.is_action_pressed("right_click") or not do_right_click_motion:
 			camrot_h -= event.relative.x * h_sens
 			camrot_v -= event.relative.y * v_sens
+	if event is InputEventMouseButton and can_zoom:
+		if event.button_index == 4 and event.pressed:
+			camera_distance = lerp(camera_distance, camera_distance-0.5*zoom_sens, 0.1)
+		elif event.button_index == 5 and event.pressed:
+			camera_distance = lerp(camera_distance, camera_distance+0.5*zoom_sens, 0.1)
 
 func _ready():
 	if Engine.is_editor_hint() and not cam_rot_updated:
 		camrot_v = camrot_v
 		camrot_h = camrot_h
 		cam_rot_updated = true
+	
+	if input_getter:
+		input_getter.gui_input.connect(_gui_input)
+	
 	if not set_cam_dist:
 		camera_distance = camera_distance
 		set_cam_dist = true
@@ -88,11 +95,6 @@ func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return # Don't run this in the editor!
 	if can_input:
-		if can_zoom:
-			if Input.is_action_just_pressed("zoom_in"):
-				camera_distance = lerp(camera_distance, camera_distance-0.5*zoom_sens, delta*h_accel)
-			elif Input.is_action_just_pressed("zoom_out"):
-				camera_distance = lerp(camera_distance, camera_distance+0.5*zoom_sens, delta*h_accel)
 		if Input.is_action_pressed("pan_down"):
 			camrot_v -= v_sens * SENS_MULT
 		if Input.is_action_pressed("pan_up"):

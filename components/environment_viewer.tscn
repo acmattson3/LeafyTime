@@ -52,7 +52,7 @@ environment = SubResource("Environment_8hnrr")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MovableCamera3D" parent="." instance=ExtResource("1_xgvpr")]
+[node name="MovableCamera3D" parent="." node_paths=PackedStringArray("input_getter") instance=ExtResource("1_xgvpr")]
 cam_v_max = 85.0
 cam_v_min = 1.0
 min_distance = 3.0
@@ -60,6 +60,7 @@ max_distance = 180.0
 zoom_sens = 50.0
 camrot_h = 45.0
 camrot_v = -30.0
+input_getter = NodePath("../UI/HBoxContainer/HSplitContainer/HBoxContainer/HSplitContainer/Spacer")
 
 [node name="Environment" type="Node3D" parent="."]
 

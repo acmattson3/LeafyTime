@@ -24,6 +24,7 @@ do_interpolate = false
 do_right_click_motion = false
 camera_distance = 0.0
 lock_horiz = true
+can_zoom = false
 
 [node name="InfoLabel" type="Label" parent="."]
 offset_right = 40.0
