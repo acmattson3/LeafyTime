@@ -5,16 +5,14 @@
 [ext_resource type="ArrayMesh" uid="uid://bel5c2vcvjw5v" path="res://plants/peony/peony.obj" id="3_nt0e2"]
 [ext_resource type="Material" uid="uid://bq8v7ud0kewp2" path="res://plants/peony/peony_leaf_mat.tres" id="3_rhh3d"]
 [ext_resource type="Texture2D" uid="uid://bvt5e0dhaeu46" path="res://plants/peony/white_peony_flower.png" id="4_e6ij5"]
+[ext_resource type="Material" uid="uid://dqb57r1fbkbud" path="res://plants/peony/peony_stem_mat.tres" id="5_i6a4y"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcpj"]
-transparency = 2
-alpha_scissor_threshold = 0.361
-alpha_antialiasing_mode = 0
-cull_mode = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tmty"]
+transparency = 1
+albedo_color = Color(0.738217, 0.745608, 0.720018, 1)
 albedo_texture = ExtResource("4_e6ij5")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56wnn"]
-albedo_color = Color(0.230344, 0.352111, 0.119003, 1)
+metallic_specular = 0.0
+roughness = 0.0
 
 [node name="Peony" instance=ExtResource("1_nf3vs")]
 script = ExtResource("2_8qt1p")
@@ -22,8 +20,9 @@ plant_name = "Peony Plant"
 study_hours = 2
 
 [node name="Peony" type="MeshInstance3D" parent="." index="0"]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
 mesh = ExtResource("3_nt0e2")
-surface_material_override/0 = SubResource("StandardMaterial3D_abcpj")
-surface_material_override/1 = ExtResource("3_rhh3d")
-surface_material_override/2 = SubResource("StandardMaterial3D_56wnn")
+surface_material_override/0 = ExtResource("3_rhh3d")
+surface_material_override/1 = ExtResource("5_i6a4y")
+surface_material_override/2 = ExtResource("5_i6a4y")
+surface_material_override/3 = SubResource("StandardMaterial3D_3tmty")
