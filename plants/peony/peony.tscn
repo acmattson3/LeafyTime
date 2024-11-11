@@ -16,7 +16,7 @@ roughness = 0.0
 
 [node name="Peony" instance=ExtResource("1_nf3vs")]
 script = ExtResource("2_8qt1p")
-plant_name = "Peony Plant"
+plant_name = "Peony"
 study_hours = 2
 
 [node name="Peony" type="MeshInstance3D" parent="." index="0"]
