@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ddm6eiq2ugqq0"]
+
+[ext_resource type="Texture2D" uid="uid://b5m3ed84kw2n5" path="res://plants/sunflower/sunflower_head_front.png" id="1_flas6"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.697
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_flas6")

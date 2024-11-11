@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwihfhava7efc"]
+[gd_scene load_steps=13 format=3 uid="uid://dwihfhava7efc"]
 
 [ext_resource type="PackedScene" uid="uid://d03ttnf36pyb8" path="res://util/seed_button.tscn" id="1_3vvey"]
 [ext_resource type="Script" path="res://util/seeds_menu.gd" id="1_wirmq"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://gbm24cfvkb5e" path="res://plants/lawlorberry_bush/lawlorberry_bush.tscn" id="7_8a63i"]
 [ext_resource type="Texture2D" uid="uid://ba33bv510nybt" path="res://plants/lawlorberry_bush/lawlorberry_bush.png" id="8_gcvu8"]
 [ext_resource type="PackedScene" uid="uid://bjeyaxab77se7" path="res://plants/peony/peony.tscn" id="9_3d2hf"]
+[ext_resource type="PackedScene" uid="uid://biajmq2a6hi2f" path="res://plants/sunflower/sunflower.tscn" id="10_uwr65"]
+[ext_resource type="Texture2D" uid="uid://bvt5e0dhaeu46" path="res://plants/peony/white_peony_flower.png" id="10_vsxdk"]
+[ext_resource type="Texture2D" uid="uid://b5m3ed84kw2n5" path="res://plants/sunflower/sunflower_head_front.png" id="12_re6qj"]
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(160, 0)
@@ -59,32 +62,40 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 3
 theme_override_constants/v_separation = 3
 
-[node name="SeedButton" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+[node name="Grass" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("3_w7b0q")
 plant_icon = ExtResource("4_8c7dm")
 
-[node name="SeedButton2" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+[node name="BirchTree" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("5_110n0")
 plant_icon = ExtResource("6_ogyos")
 
-[node name="SeedButton3" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+[node name="LawlorberryBush" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("7_8a63i")
 plant_icon = ExtResource("8_gcvu8")
 
-[node name="SeedButton4" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+[node name="Peony" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("9_3d2hf")
+plant_icon = ExtResource("10_vsxdk")
+
+[node name="Sunflower" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+plant_scene = ExtResource("10_uwr65")
+plant_icon = ExtResource("12_re6qj")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d1agia5jh7665"]
+
+[ext_resource type="Texture2D" uid="uid://b3yoy6dvucvcq" path="res://plants/sunflower/sunflower_leaf.png" id="1_bimus"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.885
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.537011, 0.537011, 0.537011, 1)
+albedo_texture = ExtResource("1_bimus")

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://da8mu5cv1kvdo"
+path="res://.godot/imported/sunflower.obj-20ffdc7cc39e4de4492b1d4374a70d84.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sunflower.obj-20ffdc7cc39e4de4492b1d4374a70d84.mesh"]
+
+source_file="res://plants/sunflower/sunflower.obj"
+dest_files=["res://.godot/imported/sunflower.obj-20ffdc7cc39e4de4492b1d4374a70d84.mesh", "res://.godot/imported/sunflower.obj-20ffdc7cc39e4de4492b1d4374a70d84.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
