@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://dvx2hmibdgqc7" path="res://plants/sunflower/petals_material.tres" id="6_wjf2w"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v2cur"]
-height = 8.39744
+height = 6.03896
 radius = 0.0940943
 
 [node name="Sunflower" instance=ExtResource("1_qk8jn")]
@@ -25,6 +25,6 @@ surface_material_override/2 = ExtResource("4_8yg8t")
 surface_material_override/3 = ExtResource("6_wjf2w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277527, 4.0974, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277527, 2.91784, 0)
 shape = SubResource("CylinderShape3D_v2cur")
 disabled = true
