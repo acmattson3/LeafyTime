@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blf8dnhor178o"]
+
+[ext_resource type="Texture2D" uid="uid://dkdja7gxdvcrp" path="res://plants/spruce_tree/spruce_bark.png" id="1_gkm81"]
+
+[resource]
+albedo_color = Color(0.837765, 0.843449, 0.75954, 1)
+albedo_texture = ExtResource("1_gkm81")
+uv1_scale = Vector3(3, 30, 3)

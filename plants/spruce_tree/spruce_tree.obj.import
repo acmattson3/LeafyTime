@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dyvpt5npdiw8f"
+path="res://.godot/imported/spruce_tree.obj-c6013245d0cf20147da5f79bd6a0dd4f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spruce_tree.obj-c6013245d0cf20147da5f79bd6a0dd4f.mesh"]
+
+source_file="res://plants/spruce_tree/spruce_tree.obj"
+dest_files=["res://.godot/imported/spruce_tree.obj-c6013245d0cf20147da5f79bd6a0dd4f.mesh", "res://.godot/imported/spruce_tree.obj-c6013245d0cf20147da5f79bd6a0dd4f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

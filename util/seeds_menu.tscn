@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwihfhava7efc"]
+[gd_scene load_steps=15 format=3 uid="uid://dwihfhava7efc"]
 
 [ext_resource type="PackedScene" uid="uid://d03ttnf36pyb8" path="res://util/seed_button.tscn" id="1_3vvey"]
 [ext_resource type="Script" path="res://util/seeds_menu.gd" id="1_wirmq"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://biajmq2a6hi2f" path="res://plants/sunflower/sunflower.tscn" id="10_uwr65"]
 [ext_resource type="Texture2D" uid="uid://bvt5e0dhaeu46" path="res://plants/peony/white_peony_flower.png" id="10_vsxdk"]
 [ext_resource type="Texture2D" uid="uid://b5m3ed84kw2n5" path="res://plants/sunflower/sunflower_head_front.png" id="12_re6qj"]
+[ext_resource type="PackedScene" uid="uid://bdynky1uu683i" path="res://plants/spruce_tree/spruce_tree.tscn" id="13_1jvgw"]
+[ext_resource type="Texture2D" uid="uid://dap2q6tipegqo" path="res://plants/spruce_tree/spruce_icon.png" id="14_7pt44"]
 
 [node name="PanelContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(160, 0)
@@ -96,6 +98,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 plant_scene = ExtResource("10_uwr65")
 plant_icon = ExtResource("12_re6qj")
+
+[node name="SpruceTree" parent="MarginContainer/ScrollContainer/VBoxContainer/FlowContainer" instance=ExtResource("1_3vvey")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+plant_scene = ExtResource("13_1jvgw")
+plant_icon = ExtResource("14_7pt44")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

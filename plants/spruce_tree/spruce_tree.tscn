@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdynky1uu683i"]
+
+[ext_resource type="PackedScene" uid="uid://bucgk7mydn8ic" path="res://plants/base_plant.tscn" id="1_7205a"]
+[ext_resource type="ArrayMesh" uid="uid://dyvpt5npdiw8f" path="res://plants/spruce_tree/spruce_tree.obj" id="2_mda2g"]
+[ext_resource type="Script" path="res://plants/spruce_tree/spruce_tree.gd" id="2_pvjso"]
+[ext_resource type="Material" uid="uid://bwt03oja378ao" path="res://plants/spruce_tree/spruce_branch_mat.tres" id="3_tnu16"]
+[ext_resource type="Material" uid="uid://blf8dnhor178o" path="res://plants/spruce_tree/spruce_bark_mat.tres" id="4_81k7u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s5ty"]
+blend_mode = 1
+albedo_color = Color(0, 0, 0, 0)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yicvi"]
+radius = 0.201672
+height = 6.58827
+
+[node name="SpruceTree" instance=ExtResource("1_7205a")]
+script = ExtResource("2_pvjso")
+unlocked = true
+plant_name = "Spruce Tree"
+study_hours = 1
+study_minutes = 30
+
+[node name="SpruceTree" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = ExtResource("2_mda2g")
+surface_material_override/0 = ExtResource("3_tnu16")
+surface_material_override/1 = ExtResource("4_81k7u")
+
+[node name="SpruceTree2" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.0471906, 0, -0.137106, 0, 0.145, 0, 0.137106, 0, 0.0471906, 0, -0.0764474, 0)
+mesh = ExtResource("2_mda2g")
+surface_material_override/0 = ExtResource("3_tnu16")
+surface_material_override/1 = SubResource("StandardMaterial3D_7s5ty")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95772, 0)
+shape = SubResource("CapsuleShape3D_yicvi")
+disabled = true

@@ -81,9 +81,10 @@ func _on_load_game():
 func set_active_plant(plant: BasePlant):
 	active_plant = plant
 
+var scale_ratio = 1.0
 func _physics_process(_delta):
 	if active_plant and state == StudyState.ACTIVE:
-		var ratio = (starting_study_time-study_time_remaining)/starting_study_time
+		var ratio = scale_ratio*(starting_study_time-study_time_remaining)/starting_study_time
 		ratio = 0.01 if ratio <= 0.0 else ratio
 		active_plant.scale = Vector3(ratio,ratio,ratio)
 
@@ -150,6 +151,7 @@ func _notification(what):
 func _on_start_study_session(plant: BasePlant):
 	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
 		return # We are already studying; don't do that!
+	scale_ratio = randf_range(0.8,1.2)
 	SoundManager.play_happy()
 	active_plant = plant
 	
@@ -182,7 +184,7 @@ func _on_stop_study_session(completed: bool):
 			SoundManager.play_very_happy()
 			print("Study session completed!")
 			state = StudyState.IDLE
-			active_plant.scale = Vector3.ONE
+			active_plant.scale = Vector3(scale_ratio,scale_ratio,scale_ratio)
 			EventBus.unlock_plant.emit(active_plant.plant_name)
 			GameManager.update_plant(active_plant)
 			EventBus.show_info.emit("You successfully got a "+active_plant.plant_name+"!")
