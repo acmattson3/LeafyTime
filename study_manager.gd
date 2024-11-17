@@ -27,14 +27,37 @@ var _focus_greylist: Array = []: # The list of blocked/allowed keywords
 	set(value):
 		GameManager.set_greylist(value)
 		_focus_greylist = value
-# TODO: Add a settings menu for white/blacklist info!!!
-# Also let it have sensitivities, break-to-study ratio, 
-# pomodoro durations, etc
 
 var _study_to_break_ratio: float = 6.0: # minutes of study time for every minute of break time
 	set(value):
 		GameManager.set_study_break_ratio(value)
 		_study_to_break_ratio = value
+
+# Pomodoro Technique
+# Uses 30-minute (default) time increments for study/breaks.
+var pomodoro_interval: float = 30.0 * 60.0 # 30-minute intervals by default
+var use_pomodoro_reminders: bool = false # Do we use pomodoro reminders?
+var _pomodoro_study_remaining: float = pomodoro_interval - (pomodoro_interval/_study_to_break_ratio)
+var _pomodoro_break_remaining: float = pomodoro_interval/_study_to_break_ratio
+var enforce_pomodoro: bool = false # Does pomodoro control study/break time?
+
+func set_enforce_pomodoro(do_enforce: bool):
+	enforce_pomodoro = do_enforce
+
+func get_enforce_pomodoro():
+	return enforce_pomodoro
+
+func set_use_pomodoro_reminders(use: bool):
+	enforce_pomodoro = use
+
+func get_use_pomodoro_reminders():
+	return use_pomodoro_reminders
+
+func set_pomodoro_interval(new_interval: float):
+	pomodoro_interval = new_interval
+
+func get_pomodoro_interval():
+	return pomodoro_interval
 
 func set_study_break_ratio(new_ratio: float):
 	_study_to_break_ratio = new_ratio if new_ratio>0 else 6.0
@@ -91,11 +114,19 @@ func _physics_process(_delta):
 var check_focus_elapsed: float  = 25.0
 var check_focus_interval: float = 5.0 # Check focus every 5 seconds
 var reminded: bool = false
+var pomodoro_alerted: bool = false
 func _process(delta):
 	if state == StudyState.ACTIVE:
 		reminded = false
 		study_time_remaining -= delta
 		check_focus_elapsed += delta
+		if use_pomodoro_reminders:
+			_pomodoro_study_remaining -= delta
+			if _pomodoro_study_remaining <= 0.0 and not pomodoro_alerted:
+				pomodoro_alerted = true
+				EventBus.show_info.emit("Time for a break!")
+				if enforce_pomodoro:
+					_on_start_break()
 		
 		if study_time_remaining <= 0.0: # Done studying!
 			EventBus.stop_study_session.emit(true)
@@ -112,11 +143,18 @@ func _process(delta):
 		
 	elif state == StudyState.ON_BREAK:
 		break_time_remaining -= delta
-		if break_time_remaining < 30.0 and not reminded:
+		if use_pomodoro_reminders:
+			_pomodoro_break_remaining -= delta
+			if _pomodoro_break_remaining <= 0.0 and not pomodoro_alerted:
+				pomodoro_alerted = true
+				EventBus.show_info.emit("Time to study!")
+				if enforce_pomodoro:
+					_on_resume_study_session()
+		if break_time_remaining < 30.0 and not reminded and not enforce_pomodoro:
 			reminded = true
 			EventBus.show_warning.emit("You are almost out of break time!")
 			SoundManager.play_sad()
-		if break_time_remaining <= 0.0: # Out of break time!
+		if break_time_remaining <= 0.0 and not enforce_pomodoro: # Out of break time!
 			EventBus.stop_study_session.emit(false)
 			EventBus.show_warning.emit("You ran out of break time, and your plant died!")
 
@@ -149,6 +187,7 @@ func _notification(what):
 
 # Handler for starting a study session
 func _on_start_study_session(plant: BasePlant):
+	_pomodoro_study_remaining = pomodoro_interval-(pomodoro_interval/_study_to_break_ratio)
 	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
 		return # We are already studying; don't do that!
 	scale_ratio = randf_range(0.8,1.2)
@@ -167,12 +206,16 @@ func _on_start_study_session(plant: BasePlant):
 # Handler for starting a break
 func _on_start_break():
 	if state == StudyState.ACTIVE:
+		_pomodoro_study_remaining = pomodoro_interval-(pomodoro_interval/_study_to_break_ratio)
+		pomodoro_alerted = false
 		state = StudyState.ON_BREAK
 		print("Studying paused.")
 
 # Handler for resuming a paused study session
 func _on_resume_study_session():
 	if state == StudyState.ON_BREAK:
+		_pomodoro_break_remaining = pomodoro_interval / _study_to_break_ratio
+		pomodoro_alerted = false
 		state = StudyState.ACTIVE
 		print("Studying resumed!")
 

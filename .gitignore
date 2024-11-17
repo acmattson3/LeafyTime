@@ -21,6 +21,7 @@ aggregated_texts.txt
 # Game export ignores
 *export*
 *.zip
+*.dll
 
 # GDExtension ignores
 *.os
