@@ -21,6 +21,7 @@ EventBus="*res://event_bus.gd"
 GameManager="*res://game_manager.gd"
 StudyManager="*res://study_manager.gd"
 SoundManager="*res://sound_manager.gd"
+PomodoroManager="*res://pomodoro_manager.gd"
 
 [debug]
 
