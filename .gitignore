@@ -25,5 +25,6 @@ aggregated_texts.txt
 
 # GDExtension ignores
 *.os
+*.so
 godot-cpp/
 .scons*
