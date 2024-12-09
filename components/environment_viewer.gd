@@ -38,6 +38,9 @@ func _ready():
 	EventBus.resume_study_session.connect(_on_resume_study_session)
 	EventBus.stop_study_session.connect(_on_stop_study_session)
 	EventBus.toggle_env_input.connect(_on_toggle_env_input)
+	
+	PomodoroManager.break_time_up.connect(_on_resume_study_session)
+	PomodoroManager.study_time_up.connect(_on_start_break)
 
 var do_env_input: bool = true
 func _on_toggle_env_input(is_on):
@@ -46,7 +49,11 @@ func _on_toggle_env_input(is_on):
 func _on_start_study_session(_plant: BasePlant):
 	selected_ring.hide()
 	%ToggleStudyBreakButton.text = "Start Break"
-	%ToggleStudyBreakButton.show()
+	if not StudyManager.using_pomodoro:
+		%ToggleStudyBreakButton.show()
+	else:
+		%TotalStudyRemainingLabel.show()
+		%TotalStudyRemaining.show()
 	%StopStudyButton.show()
 	%ExploreButton.disabled = true
 	%TimeRemainingLabel.show()
@@ -75,12 +82,15 @@ func _on_stop_study_session(_completed):
 	%ExploreButton.disabled = false
 	%TimeRemainingLabel.hide()
 	%TimeRemaining.hide()
+	%TotalStudyRemainingLabel.hide()
+	%TotalStudyRemaining.hide()
 
 func _on_resume_study_after_exit(_plant_name):
 	print("Resuming after exit!")
 	selected_ring.hide()
 	%ToggleStudyBreakButton.text = "Resume Studying"
-	%ToggleStudyBreakButton.show()
+	if not StudyManager.using_pomodoro:
+		%ToggleStudyBreakButton.show()
 	%StopStudyButton.show()
 	%ExploreButton.disabled = true
 	%TimeRemainingLabel.show()
@@ -122,6 +132,7 @@ func _physics_process(delta: float) -> void:
 	if EventBus.exploring:
 		return # The viewer should do nothing if we are exploring an environment.
 	
+	%TotalStudyRemaining.text = StudyManager.get_readable_total_time_remaining()
 	if StudyManager.is_studying():
 		%TimeRemaining.text = StudyManager.get_readable_time_remaining()
 		return

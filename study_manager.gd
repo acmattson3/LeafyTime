@@ -17,6 +17,9 @@ var state := StudyState.IDLE
 @onready var starting_study_time: float = 0.0 # The study time we started with
 @onready var study_time_remaining: float = 0.0
 @onready var break_time_remaining: float = 0.0
+@onready var total_time_remaining: float = 0.0
+
+var using_pomodoro: bool = true # Are we using Pomodoro logic?
 
 # Window tracking logic
 var whitelist: bool = false: # False == blacklist, True == whitelist
@@ -34,7 +37,7 @@ var _study_to_break_ratio: float = 6.0: # minutes of study time for every minute
 		_study_to_break_ratio = value
 
 func set_study_break_ratio(new_ratio: float):
-	_study_to_break_ratio = new_ratio if new_ratio>0 else 6.0
+	_study_to_break_ratio = new_ratio if new_ratio > 0 else 6.0
 
 func get_study_break_ratio():
 	return _study_to_break_ratio
@@ -45,6 +48,9 @@ func _ready():
 	EventBus.resume_study_session.connect(_on_resume_study_session)
 	EventBus.stop_study_session.connect(_on_stop_study_session)
 	EventBus.load_game.connect(_on_load_game)
+	
+	PomodoroManager.study_time_up.connect(_on_start_break)
+	PomodoroManager.break_time_up.connect(_on_resume_study_session)
 
 func _on_load_game():
 	_focus_greylist = GameManager.get_greylist()
@@ -92,6 +98,8 @@ var check_focus_elapsed: float  = 25.0
 var check_focus_interval: float = 5.0 # Check focus every 5 seconds
 var reminded: bool = false
 func _process(delta):
+	total_time_remaining = break_time_remaining + study_time_remaining
+	
 	if state == StudyState.ACTIVE:
 		reminded = false
 		study_time_remaining -= delta
@@ -112,6 +120,8 @@ func _process(delta):
 		
 	elif state == StudyState.ON_BREAK:
 		break_time_remaining -= delta
+		if using_pomodoro:
+			return # We don't care; PomodoroManager handles it!
 		if break_time_remaining < 30.0 and not reminded:
 			reminded = true
 			EventBus.show_warning.emit("You are almost out of break time!")
@@ -119,6 +129,9 @@ func _process(delta):
 		if break_time_remaining <= 0.0: # Out of break time!
 			EventBus.stop_study_session.emit(false)
 			EventBus.show_warning.emit("You ran out of break time, and your plant died!")
+
+func get_readable_total_time_remaining():
+	return seconds_to_readable_time(total_time_remaining)
 
 # Check if a user violates the black/whitelist
 func check_distracted():
@@ -161,24 +174,33 @@ func _on_start_study_session(plant: BasePlant):
 	study_time_remaining = total_plant_time - break_time_remaining
 	starting_study_time = study_time_remaining
 	
+	if using_pomodoro:
+		PomodoroManager.start_study_timer(study_time_remaining)
+	
 	state = StudyState.ACTIVE
 	print(plant.get_readable_study_duration(), " study session started for ", plant.get_plant_name())
 
 # Handler for starting a break
 func _on_start_break():
 	if state == StudyState.ACTIVE:
+		if using_pomodoro:
+			PomodoroManager.start_break_timer()
 		state = StudyState.ON_BREAK
 		print("Studying paused.")
 
 # Handler for resuming a paused study session
 func _on_resume_study_session():
 	if state == StudyState.ON_BREAK:
+		if using_pomodoro:
+			PomodoroManager.start_study_timer(study_time_remaining)
 		state = StudyState.ACTIVE
 		print("Studying resumed!")
 
 # Handler for stopping a study session
 func _on_stop_study_session(completed: bool):
 	if state == StudyState.ACTIVE or state == StudyState.ON_BREAK:
+		if using_pomodoro:
+			PomodoroManager.stop_timer()
 		print("Studying stopped!")
 		if completed: # Succeeded!
 			SoundManager.play_very_happy()
@@ -221,6 +243,8 @@ func _save_study_progress():
 		GameManager.clear_study_data()
 
 func get_time_remaining():
+	if using_pomodoro:
+		return PomodoroManager.get_time_remaining()
 	match state:
 		StudyState.ACTIVE:
 			return study_time_remaining
