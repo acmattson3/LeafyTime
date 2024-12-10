@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bwt03oja378ao"]
 
-[ext_resource type="Texture2D" uid="uid://dnuw80o1petrf" path="res://plants/spruce_tree/spruce_bow.png" id="1_lgr7s"]
+[ext_resource type="Texture2D" uid="uid://du6qnw54qwi5i" path="res://plants/spruce_tree/spruce_bow.png" id="1_lgr7s"]
 
 [resource]
 transparency = 2

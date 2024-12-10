@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnuw80o1petrf"
-path.s3tc="res://.godot/imported/spruce_bow.png-014ab0bce286be03e0018483d68c3077.s3tc.ctex"
+uid="uid://du6qnw54qwi5i"
+path="res://.godot/imported/spruce_bow.png-014ab0bce286be03e0018483d68c3077.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://plants/spruce_tree/spruce_bow.png"
-dest_files=["res://.godot/imported/spruce_bow.png-014ab0bce286be03e0018483d68c3077.s3tc.ctex"]
+dest_files=["res://.godot/imported/spruce_bow.png-014ab0bce286be03e0018483d68c3077.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
