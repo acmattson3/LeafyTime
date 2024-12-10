@@ -4,7 +4,7 @@ LeafyTime is a productivity application designed to motivate users through gamif
 
 ## Features
 
-- **Interactive Study Tracking**: Earn virtual plants by completing study sessions. Watch them grow as you reach your productivity goals.
+- **Interactive Study Tracking**: Grow virtual plants by completing study sessions. Watch them grow as you reach your productivity goals.
 - **Customizable Study Sessions**: Set your study goals with precise durations, ranging from minutes to hours.
 - **3D Garden Simulation**: Create your own garden filled with a variety of plants. Each plant represents your productivity and grows as you stay on track.
 - **Exploration Mode**: Immerse yourself in your garden through first-person exploration. Experience the fruits of your focused sessions.
