@@ -19,6 +19,16 @@ var active_timer: PomoState = PomoState.IDLE  # true or false for study or break
 var study_to_break_ratio: float = 6.0  # Default ratio, updated from StudyManager
 var interval_time: float = 30.0 * 60.0  # Default 30 minutes study time (in seconds)
 
+func _ready():
+	EventBus.load_game.connect(_on_load_game)
+
+func _on_load_game():
+	interval_time = GameManager.get_pomo_interval()
+	var study_data = GameManager.get_study_data()
+	if study_data == {}:
+		return # No study info to be concerned about!
+	start_study_timer(study_data.study_duration)
+
 # Initialize timers based on the current study-to-break ratio
 func setup_timers():
 	study_to_break_ratio = StudyManager.get_study_break_ratio()
@@ -35,7 +45,7 @@ func start_study_timer(time: float):
 	active_timer = PomoState.STUDY
 	SoundManager.play_happy()
 	EventBus.show_info.emit("Time to study!")
-	#print("Pomodoro study timer started for ", seconds_to_readable_time(study_time_remaining))
+	print("Pomodoro study timer started for ", seconds_to_readable_time(study_time_remaining))
 
 # Start the break timer
 func start_break_timer():
@@ -92,3 +102,7 @@ func update_study_break_ratio(new_ratio: float):
 	study_to_break_ratio = new_ratio if new_ratio > 0 else 6.0
 	setup_timers()
 	print("Updated study-to-break ratio to ", study_to_break_ratio)
+
+func set_interval_time(value: float):
+	interval_time = value
+	GameManager.set_pomo_interval(value)

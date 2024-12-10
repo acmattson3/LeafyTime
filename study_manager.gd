@@ -56,6 +56,7 @@ func _on_load_game():
 	_focus_greylist = GameManager.get_greylist()
 	whitelist = GameManager.get_do_whitelist()
 	_study_to_break_ratio = GameManager.get_study_break_ratio()
+	using_pomodoro = GameManager.get_use_pomodoro()
 	
 	var study_data = GameManager.get_study_data()
 	if study_data == {}:
@@ -63,10 +64,27 @@ func _on_load_game():
 	print("User stopped during study session!")
 	EventBus.resume_study_after_exit.emit(study_data.plant_name)
 	await get_tree().physics_frame
-	state = StudyState.ON_BREAK # Leave off on a break
 	var time_diff = Time.get_unix_time_from_system() - study_data.exit_time
+	if using_pomodoro:
+		state = StudyState.ACTIVE
+		study_time_remaining = study_data.study_duration
+		starting_study_time = study_data.starting_study_time
+		if time_diff > max_off_task:
+			var warning_message = "You exited the game while studying, and "
+			warning_message += "were absent for more than 30 seconds! You "
+			warning_message += "have failed your study session."
+			EventBus.show_warning.emit(warning_message)
+			EventBus.stop_study_session.emit(false)
+		else:
+			SoundManager.play_neutral()
+			var warning_message = "You exited the game while studying, but "
+			warning_message += "you were absent for less than 30 seconds. "
+			warning_message += "Your study session has been resumed."
+			EventBus.show_warning.emit(warning_message)
+		return
+	state = StudyState.ON_BREAK # Leave off on a break
 	if time_diff > study_data.break_duration: # Exited for longer than break time!
-		SoundManager.play_sad()
+		#SoundManager.play_sad()
 		print("User was gone ", time_diff - study_data.break_duration, " seconds too long!")
 		var warning_message = "You exited the game while studying, and "
 		warning_message += "went " + str(int(time_diff - study_data.break_duration)) + " seconds over "
@@ -97,8 +115,33 @@ func _physics_process(_delta):
 var check_focus_elapsed: float  = 25.0
 var check_focus_interval: float = 5.0 # Check focus every 5 seconds
 var reminded: bool = false
+var off_task_countdown: bool = false
+var off_task_elapsed: float = 0.0
+var max_off_task: float = 30.0
 func _process(delta):
 	total_time_remaining = break_time_remaining + study_time_remaining
+	if total_time_remaining < 0.0:
+		EventBus.stop_study_session.emit(true)
+	
+	if off_task_countdown:
+		if state == StudyState.ON_BREAK: # Break time has begun
+			off_task_elapsed = 0.0
+			off_task_countdown = false
+		check_focus_elapsed += delta
+		off_task_elapsed += delta
+		if off_task_elapsed > max_off_task:
+			off_task_elapsed = 0.0
+			off_task_countdown = false
+			EventBus.show_warning.emit("You remained distracted, and your plant died!")
+			EventBus.stop_study_session.emit(false)
+		
+		if check_focus_elapsed > 1.0:
+			check_focus_elapsed = 0.0
+			if not check_distracted(): # No longer distracted
+				off_task_elapsed = 0.0
+				off_task_countdown = false
+				SoundManager.play_happy()
+				EventBus.show_info.emit("Good job getting back on task!")
 	
 	if state == StudyState.ACTIVE:
 		reminded = false
@@ -111,11 +154,16 @@ func _process(delta):
 			if check_distracted():
 				print("User is distracted!")
 				var warning_message = "According to your list of apps, "
-				warning_message += "you are distracted! You have been "
-				warning_message += "kicked into break time."
+				warning_message += "you are distracted! You have "
+				if not using_pomodoro:
+					warning_message += "been kicked into break time."
+					EventBus.start_break.emit()
+				else:
+					warning_message += " 30 seconds to get back on task."
+					off_task_countdown = true
+					off_task_elapsed = 0.0
 				SoundManager.play_sad()
 				EventBus.show_warning.emit(warning_message)
-				EventBus.start_break.emit()
 			check_focus_elapsed = 0.0
 		
 	elif state == StudyState.ON_BREAK:

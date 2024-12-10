@@ -48,6 +48,8 @@ func _on_toggle_env_input(is_on):
 
 func _on_start_study_session(_plant: BasePlant):
 	selected_ring.hide()
+	%PomoCheckbox.disabled = true
+	%PomoIntervalTickButton.disabled = true
 	%ToggleStudyBreakButton.text = "Start Break"
 	if not StudyManager.using_pomodoro:
 		%ToggleStudyBreakButton.show()
@@ -77,6 +79,8 @@ func _on_resume_study_session():
 
 func _on_stop_study_session(_completed):
 	selected_ring.show()
+	%PomoCheckbox.disabled = false
+	%PomoIntervalTickButton.disabled = false
 	%ToggleStudyBreakButton.hide()
 	%StopStudyButton.hide()
 	%ExploreButton.disabled = false
@@ -88,16 +92,24 @@ func _on_stop_study_session(_completed):
 func _on_resume_study_after_exit(_plant_name):
 	print("Resuming after exit!")
 	selected_ring.hide()
-	%ToggleStudyBreakButton.text = "Resume Studying"
-	if not StudyManager.using_pomodoro:
+	if StudyManager.using_pomodoro:
+		%TimeRemainingLabel.text = "Study Time Left:"
+		%TotalStudyRemainingLabel.show()
+		%TotalStudyRemaining.show()
+		%PomoCheckbox.disabled = true
+		%PomoIntervalTickButton.disabled = true
+	else:
+		%TimeRemainingLabel.text = "Break Time Left:"
 		%ToggleStudyBreakButton.show()
+		%ToggleStudyBreakButton.text = "Resume Studying"
 	%StopStudyButton.show()
 	%ExploreButton.disabled = true
 	%TimeRemainingLabel.show()
 	%TimeRemaining.show()
-	%TimeRemainingLabel.text = "Break Time Left:"
 
 func _on_load_game():
+	%PomoIntervalTickButton.value = GameManager.get_pomo_interval()/60.0
+	%PomoCheckbox.button_pressed = GameManager.get_use_pomodoro()
 	%TickButton.value = GameManager.get_study_break_ratio()
 	%WhitelistCheckBox.button_pressed = GameManager.get_do_whitelist()
 	var words: Array = GameManager.get_greylist()
@@ -192,7 +204,7 @@ func _on_seed_button_pressed(seed_button):
 			curr_plant.hide()
 			curr_env.add_child(curr_plant, true)
 	else:
-		print("Plant is locked!")
+		#print("Plant is locked!")
 		if curr_seed_button.plant_scene:
 			# Instantiate a plant but never put it in the world!
 			SoundManager.play_neutral()
@@ -330,3 +342,12 @@ func _on_whitelist_check_box_toggled(toggled_on: bool) -> void:
 
 func _on_tick_button_value_changed(value: float) -> void:
 	StudyManager.set_study_break_ratio(value)
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	%PomoIntervalLabel.visible = toggled_on
+	%PomoIntervalTickButton.visible = toggled_on
+	GameManager.set_use_pomodoro(toggled_on)
+	StudyManager.using_pomodoro = toggled_on
+
+func _on_pomo_interval_tick_button_value_changed(value: float) -> void:
+	PomodoroManager.set_interval_time(value*60.0)

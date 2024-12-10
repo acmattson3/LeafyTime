@@ -8,6 +8,12 @@ extends Control
 @export var min_value: float = 0.0
 @export var step_size: float = 1.0
 
+@export var disabled: bool:
+	set(value):
+		disabled = value
+		$HBoxContainer/VBoxContainer/ButtonUp.disabled = value
+		$HBoxContainer/VBoxContainer/ButtonDown.disabled = value
+
 signal value_changed(value: float)
 
 func _ready():
