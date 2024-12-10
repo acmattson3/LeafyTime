@@ -9,6 +9,7 @@ LeafyTime is a productivity application designed to motivate users through gamif
 - **3D Garden Simulation**: Create your own garden filled with a variety of plants. Each plant represents your productivity and grows as you stay on track.
 - **Exploration Mode**: Immerse yourself in your garden through first-person exploration. Experience the fruits of your focused sessions.
 - **Distraction Detection (Optional)**: Track window usage during study sessions to ensure focus. This feature is entirely optional and respects user privacy.
+- **Pomodoro Timers (Optional)**: Choose to use Pomodoro-style timers rather than the built-in study system.
 
 ## Getting Started
 
