@@ -2,7 +2,7 @@
 
 LeafyTime is a productivity application designed to motivate users through gamified study sessions. By combining study tracking with a relaxing 3D garden simulation, users can grow virtual plants based on the time they spend focused on productive work. Built with the Godot 4 Engine, LeafyTime promotes effective time management by transforming study sessions into a visually rewarding experience.
 
-## Key Features
+## Features
 
 - **Interactive Study Tracking**: Earn virtual plants by completing study sessions. Watch them grow as you reach your productivity goals.
 - **Customizable Study Sessions**: Set your study goals with precise durations, ranging from minutes to hours.
