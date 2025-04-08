@@ -59,6 +59,31 @@ Contributions are welcome! If you have ideas for enhancing LeafyTime, feel free 
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Future Ideas
+Here is an extensive list of features I may add to the project at some point if others find interest in it:
+* [ ] Ability to change plant traits (e.g., color) using "fertilizer" currency earned through studying.
+* [ ] Allow users to delete plants.
+* [ ] Allow users to transplant plants (once a day?).
+* [ ] Allow users to earn exceptions for not completing study sessions.
+* [ ] Add creatures (bugs, critters) that interact with plants.
+  * [ ] Maybe certain creatures only show up when certain combinations of plants are nearby (Ex., A tree next to a flower might spawn bees)
+* [ ] Exploration quests with a camera (i.e., take a photo of a bee on a flower)
+* [ ] Journaling (shows what creatures you have discovered with sections for custom notes; keeps all of your taken photos)
+* [ ] Bigger map with more features (waterfalls, rivers, hills, etc)
+* [ ] Achievements/Challenges with placeable trophies for each upon completion
+* [ ] "Raindrop" currency for unlocking decor (benches, fountains, fences, etc)
+* [ ] World sharing (see your friends' worlds)
+  * [ ] Full multiplayer worlds; hang out with friends in your worlds.
+  * [ ] Collaborative challenges
+* [ ] Unlockable expansion areas (using currencies or study time, or a combination)
+* [ ] Unlockable environments that interact with plants or introduce new creatures
+* [ ] Seasons (and with them, special events)
+* [ ] Weather system
+* [ ] Plant interactivity (i.e., pick flowers, harvest fruit)
+* [ ] Integrated task list with goal linking
+* [ ] Session statistics (# of distractions n stuff)
+* [ ] Leaderboards
+
 ## License
 Distributed under the **MIT License**. See `LICENSE` for more information.
 
