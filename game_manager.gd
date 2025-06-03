@@ -188,7 +188,7 @@ func add_unlocked_plant(plant_name: String):
 		_game_state.unlocked_plants.append(plant_name)
 
 func get_current_env():
-	return 0
+       return _game_state.current_environment
 
 func get_greylist():
 	return _game_state.greylist
